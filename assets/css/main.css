@@ -1,0 +1,212 @@
+/**
+ *  Main stylesheet for automart challenge
+ * main.css
+ * By Dublin-Green
+ * 
+ *  ID
+ *  CLASS
+ *  TAGS
+*   @media queries
+ * **/
+ 
+ /** ID START **/
+#banner{
+	background: url("../img/banners/3.jpg") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+#footerBox{
+	position: relative;
+	bottom: 0;
+	width: 100%;
+	margin-top: 20px;
+	padding: 2px 0;
+	background-color: #333333;
+	opacity: 0.8;
+}
+
+#footer{
+	text-align: center;
+	color: #ffffff;
+}
+
+/** ID END **/
+
+/** CLASS START **/
+
+.link{
+	color: #ff0000;
+	font-weight: bolder;
+	text-decoration: none;
+}
+
+.text-center{
+	text-align: center;
+}
+
+.containerSignup{
+	width: 98%;
+}
+
+.halfContainerSignupLeft{
+	width: 38%;
+	float: left;
+	padding: 3%;
+	background: #ff0000;
+	color: #ffffff;
+	height: 400px;
+	opacity: 0.9;
+	border-radius: 90px 0px 90px 0px; 
+	height: 40%;
+	margin-top: 10%;
+	margin-right: 2%;
+}
+
+.halfContainerSignupRight{
+	width: 38%;
+	float: left;
+	padding: 1%;
+	background: #ffffff;
+	color: #ffffff;
+	height: 400px;
+	opacity: 0.9;
+	border-radius: 5px 20px 5px;
+	height: 40%;
+	margin-top: 1%;
+}
+
+.halfContainerSignupRight h1{
+	color: #ff0000;
+}
+
+.clearfix{
+	clear: both;
+}
+
+.inputGroup{
+	margin-bottom: 10px;
+}
+
+.input{
+	padding: 1%;
+	height: 35px;
+	width: 70%;
+	border-radius: 5px;
+	box-shadow: 3px 3px 3px #888888;
+}
+
+.inputTextArea{
+	padding: 1%;
+	height: 55px;
+	width: 70%;
+	border-radius: 5px;
+	box-shadow: 3px 3px 3px #888888;
+}
+
+.read{
+	font-size: 1.2em;
+}
+
+.btn{
+	color: #ffffff;
+	background-color: #ff0000;
+	border: none;
+	padding: 10px 27px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 18px;
+	border-radius: 5px;
+	font-weight: bold;
+}
+/** CLASS END **/
+
+
+
+/** TAGS START **/
+
+h1{
+	font-size: 2.5em;
+	margin: 0px;
+	padding: 1%;
+}
+
+blink {
+  -webkit-animation: 2s linear infinite condemned_blink_effect; 
+  animation: 2s linear infinite condemned_blink_effect;
+}
+
+/** TAGS END **/
+
+
+/** @ MEDIA QUERIES **/
+ @-webkit-keyframes condemned_blink_effect { 
+  0% {
+    visibility: hidden;
+  }
+  50% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
+@keyframes condemned_blink_effect {
+  0% {
+    visibility: hidden;
+  }
+  50% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+	.halfContainerSignupLeft{
+		width: 100%;
+	}
+  
+	.halfContainerSignupRight{
+		width: 100%;
+	}
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	.halfContainerSignupLeft{
+		width: 100%;
+	}
+  
+	.halfContainerSignupRight{
+		width: 100%;
+	}
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+	.halfContainerSignupLeft{
+		width: 38%;
+	}
+  
+	.halfContainerSignupRight{
+		width: 48%;
+	}
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}
+ /** @ MEDIA QUERIES END **/
