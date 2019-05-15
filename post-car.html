@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Automart User Signup</title>
+		<title>Post Car</title>
 		<meta name="robots"  content="noindex" />
 		<meta name="author" content="Dublin-Green (greendublin007@gmail.com)" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,7 +14,7 @@
 	
 	<body id="banner">
 		<head>
-			<nav id="navigation" w3-include-html="segments/nav.html"></nav>
+			<nav id="navigation" w3-include-html="segments/user-nav.html"></nav>
 		</head>
 		
 		
@@ -24,13 +24,32 @@
 				<p class="read">Auto   Mart   is   an   online   marketplace   for   automobiles   of   diverse   makes,   model   or   body   type.   With  Auto Mart, users can sell their cars or buy from trusted dealerships or private sellers. </p>
 			</article>
 			
-			<article class="halfContainerUserBoxRight halfContainerUserBoxRight2">
+			<article class="halfContainerUserBoxRight">
 				<form action="#" method="post">
-					<h1>Password Recovery</h1><hr>
+					<h1>Registration</h1><hr>
+					<input type="hidden" name="owner"  value="username"/>
+					<input type="hidden" name="created_on"  value="2019-05-14"/>
 					<section class="inputGroup">
-						<input class="input" type="email" name="email" required  placeholder="Email*" title="Your Email Here"/>
+						<select class="inputSelect" name="vechicle_state" required>
+							<option value=""> State of Vechicle</option>
+							<option value="new"> New</option>
+							<option value="used"> Used</option>
+						</select>
 					</section>
-					<button class="btn" type="submit">Recover Password </button>
+					<section class="inputGroup">
+						<select class="inputSelect" name="vechicle_status`" required>
+							<option value=""> Vechicle Status</option>
+							<option value="available">Available</option>
+							<option value="sold">Sold</option>
+						</select>
+					</section>
+					<section class="inputGroup">
+						  <input class="input"  type="number" name="vechicle_price" min="1" max="50000000" placeholder="Vechicle Price *" required>
+					</section>
+					<section class="inputGroup">
+						  <input class="input" type="text" name="vechicle_manufactuer" required  placeholder="Vechicle Manufactuer*" />
+					</section>
+					<button class="btn" type="submit">Post Car</button>
 				</form>	
 			</article>
 		</section>
