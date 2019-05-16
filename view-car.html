@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>View Car</title>
+		<meta name="robots"  content="noindex" />
+		<meta name="author" content="Dublin-Green (greendublin007@gmail.com)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		
+		<link rel="icon" type="image/x-icon" href="favicon.png" />		
+		<link rel="stylesheet" href="assets/css/main.css">
+	</head>
+	
+	<body id="bannerDashboard">
+		<head>
+			<nav id="navigation" w3-include-html="segments/user-nav.html"></nav>
+		</head>
+		
+		
+		<section class="mainContainer">
+			
+			<section class="userContentAreaFull">
+				<h1 class="text-center">BMW - 8 Series</h1><hr>
+				
+				<section class="dashboardPurchaseOrderBoxFull" >
+					
+					<figure class="purchaseOrderVehicleDashboard">
+						<article class="pull-left">
+							<img class="vehicleImage" src="assets/img/demoCars/6.jpg"  alt="vehicle image" title="vehicle image"/>
+							
+							<section class="clearfix"></section>
+							<section class="vehicleImageMultipleBox">
+								<figure>
+									<img src="assets/img/demoCars/6.jpg"  alt="vehicle image" title="vehicle image"/>
+								</figure>
+								
+								<figure>
+									<img src="assets/img/demoCars/6.jpg"  alt="vehicle image" title="vehicle image"/>
+								</figure>
+								
+							</section>
+						</article>
+
+					
+						<article class="pull-right">
+							<p class="text-instruction">
+								<strong>BMW 8 series,</strong> first body, automatic, very good engine. Just buy and drive. Thank me later.
+							</p><hr>
+							
+							 <h3 class="viewVehicleMoney2">Asking Price :  &#8358;7,000,000</h3>							
+							<table class="vechicleTable">
+								<tbody>
+									<tr>
+										<th class="tableSubject">Vehicle Status</th>
+										<td class="tableValue"><span class="vehicleStatusAvailableSmall">Available</span></td>
+									</tr>
+									<tr>
+										<th class="tableSubject">State of Vechicle</th>
+										<td class="tableValue">Used</td>
+									</tr>
+									<tr>
+										<th class="tableSubject">Vechicle Manufactuer</th>
+										<td class="tableValue">BMW</td>
+									</tr>
+									<tr>
+										<th class="tableSubject">Vechicle Model</th>
+										<td class="tableValue">8 Series</td>
+									</tr>
+									<tr>
+										<th class="tableSubject">Vechicle Body Type</th>
+										<td class="tableValue">SUV</td>
+									</tr>					
+								</tbody>
+							</table>
+							
+							<section class="clearfix"></section>
+						</article>
+						
+						<section class="clearfix"></section>
+						
+						<h1 class="vehicleInforHeader text-center">Seller Information</h1>
+						<p class="read"><strong>Name: </strong>Bernard Dublin-Green</p>
+						<p class="read"><strong>Email: </strong><a href="mailto:greendublin007@gmail.com">greendublin007@gmail.com</a></p>
+						<p class="read"><strong>Address: </strong>Badore Ajah Lagos Nigeria</p>
+						
+						<section class="clearfix"></section>
+						
+						<section class="full-page">
+							<form action="purchase-orders.html" method="post"  id="confirmAcceptOrder">
+								<input type="hidden" name="purchase_order_token" value="10109191" />
+								<button class="btn-success" type="submit">Make a Purchase Order</button>
+							</form>
+							
+							<form action="view-purchase-order.html" method="post"  id="confirmRejectOrder">
+								<input type="hidden" name="purchase_order_token" value="10109191" />
+								<button class="btn-danger" type="submit">Flag Advert</button>
+							</form>
+						
+						</section>
+						
+						<section class="clearfix"></section>
+
+					</figure>
+					
+				</section>
+				
+			</section>
+		</section>
+		
+		<section class="clearfix"></section>
+		<footer id="footerBoxDashboard" w3-include-html="segments/footer.html"></footer>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>

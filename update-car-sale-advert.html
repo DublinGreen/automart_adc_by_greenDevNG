@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Update Car Sale Advert</title>
+		<meta name="robots"  content="noindex" />
+		<meta name="author" content="Dublin-Green (greendublin007@gmail.com)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		
+		<link rel="icon" type="image/x-icon" href="favicon.png" />		
+		<link rel="stylesheet" href="assets/css/main.css">
+	</head>
+	
+	<body id="bannerDashboard">
+		<head>
+			<nav id="navigation" w3-include-html="segments/user-nav.html"></nav>
+		</head>
+		
+		
+		<section class="mainContainer">
+			
+			<aside class="userContentAside">
+				<figure class="purchaseOrderVehicleDashboard">
+					<img class="vehicleImage" src="assets/img/demoCars/6.jpg"  alt="vehicle image" title="vehicle image"/>
+					
+					<article class="pull-left">
+						<h3 class="vehicleMoney">&#8358;7,000,000</h3>
+						<span class="vehicleStatusAvailable">Available</span>
+					</article>
+					
+					<section class="clearfix"></section>
+					
+					<h2 class="vehicleInforHeader text-center">Vechicle Information</h2>
+					
+					<p class="text-instruction">
+						<strong>BMW 8 series,</strong> first body, automatic, very good engine. Just buy and drive. Thank me later.
+					</p><hr>
+							
+					<table class="vechicleTable">
+						<tr>
+							<th class="tableSubject">State of Vechicle</th>
+							<td class="tableValue">Used</td>
+						</tr>
+						<tr>
+							<th class="tableSubject">Vechicle Manufactuer</th>
+							<td class="tableValue">BMW</td>
+						</tr>
+						<tr>
+							<th class="tableSubject">Vechicle Model</th>
+							<td class="tableValue">8 Series</td>
+						</tr>
+						<tr>
+							<th class="tableSubject">Vechicle Body Type</th>
+							<td class="tableValue">SUV</td>
+						</tr>					
+					</table>
+										
+					<section class="clearfix"></section>
+
+				</figure>
+								
+			</aside>			
+			
+			<section class="userContentArea">
+				<form action="view-purchase-order.html" method="post" enctype="multipart/form-data" id="confirmVehicleDataUpdate">
+					<h1>Update Car Sale Advert</h1><hr>
+					<input type="hidden" name="owner"  value="username"/>
+					<input type="hidden" name="created_on"  value="2019-05-14"/>
+					<input type="hidden" name="status"  value="available"/>
+					<section class="inputGroup">
+						<select class="inputSelect" name="vechicle_state" required>
+							<option value=""> State of Vechicle</option>
+							<option value="new"> New</option>
+							<option selected value="used"> Used</option>
+						</select>
+					</section>
+					<section class="inputGroup">
+						<select class="inputSelect" name="vechicle_status`" required>
+							<option value=""> Vechicle Status</option>
+							<option selected value="available">Available</option>
+							<option value="sold">Sold</option>
+						</select>
+					</section>
+					<section class="inputGroup">
+						  <input class="input" value="7000000"  type="number" name="vechicle_price" min="1" max="50000000" placeholder="Vechicle Price *" required>
+					</section>
+					<section class="inputGroup">
+						  <input class="input" type="text" value="BMW" name="vechicle_manufactuer" required  placeholder="Vechicle Manufactuer*" />
+					</section>
+					<section class="inputGroup">
+						  <input class="input" type="text" value="8 Series" name="vechicle_model" required  placeholder="Vechicle Model*" />
+					</section>
+					<section class="inputGroup">
+						  <input class="input" type="text" value="SUV" name="vechicle_body_type" required  placeholder="Vechicle Body Type*" />
+					</section>
+					<section class="inputGroup">
+						<textarea class="inputTextArea" name="description" required spellcheck="true" placeholder="Description about the vehicle">BMW 8 series, first body, automatic, very good engine. Just buy and drive. Thank me later.</textarea>
+					</section>
+					<section class="inputGroup">
+						  <input type="file" name="files" multiple="multiple">
+					</section>
+
+					<button class="btn" type="submit">Update Car Sale Advert</button>
+				</form>	
+			</section>
+		</section>
+		
+		<section class="clearfix"></section>
+		<footer id="footerBoxDashboard" w3-include-html="segments/footer.html"></footer>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>

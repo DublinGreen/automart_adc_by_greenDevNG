@@ -61,7 +61,11 @@ const prepareHandlers = () => {
 				return false;
 			}
 		};
-		
+	}catch(err) {
+		//alert(err);
+	}
+	
+	try{
 		document.getElementById("confirmRejectOrder").onsubmit = function(){
 			let answer = confirm("Are you sure you want to reject this purchase order?");		
 			
@@ -72,8 +76,25 @@ const prepareHandlers = () => {
 			}
 		};
 	}catch(err) {
+		//alert(err);
+	}	
 		
+	try{
+		document.getElementById("confirmVehicleDataUpdate").onsubmit = function(){
+			let answer = confirm("Are you sure you want to update this car sale advert?");		
+			
+			if(answer == true){
+				return true;
+			}else{
+				return false;
+			}
+		};			
+	}catch(err) {
+		//alert(err);
 	}
+	
+	
+		
 }
 
 window.onload = function(){

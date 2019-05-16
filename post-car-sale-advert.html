@@ -22,7 +22,7 @@
 			<nav class="userMenu" w3-include-html="segments/user-secondary-menu.html"></nav>
 			
 			<section class="userContentArea">
-				<form action="#" method="post">
+				<form action="#" method="post" enctype="multipart/form-data">
 					<h1>Post Car Sale Advert</h1><hr>
 					<input type="hidden" name="owner"  value="username"/>
 					<input type="hidden" name="created_on"  value="2019-05-14"/>
@@ -52,6 +52,12 @@
 					</section>
 					<section class="inputGroup">
 						  <input class="input" type="text" name="vechicle_body_type" required  placeholder="Vechicle Body Type*" />
+					</section>
+					<section class="inputGroup">
+						  <input type="file" name="files" multiple="multiple" required>
+					</section>
+					<section class="inputGroup">
+						<textarea class="inputTextArea" name="description" required spellcheck="true" placeholder="Description about the vehicle"></textarea>
 					</section>
 					<button class="btn" type="submit">Post Car Sale Advert</button>
 				</form>	
