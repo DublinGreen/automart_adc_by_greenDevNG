@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Post Car Sale Advert</title>
+		<meta name="robots"  content="noindex" />
+		<meta name="author" content="Dublin-Green (greendublin007@gmail.com)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		
+		<link rel="icon" type="image/x-icon" href="favicon.png" />		
+		<link rel="stylesheet" href="assets/css/main.css">
+	</head>
+	
+	<body id="banner">
+		<head>
+			<nav id="navigation" w3-include-html="segments/user-nav.html"></nav>
+		</head>
+		
+		
+		<section class="mainContainer">
+			<nav class="userMenu" w3-include-html="segments/user-secondary-menu.html"></nav>
+			
+			<section class="userContentArea">
+				<form action="#" method="post" enctype="multipart/form-data">
+					<h1>Post Car Sale Advert</h1><hr>
+					<input type="hidden" name="owner"  value="username"/>
+					<input type="hidden" name="created_on"  value="2019-05-14"/>
+					<input type="hidden" name="status"  value="available"/>
+					<section class="inputGroup">
+						<select class="inputSelect" name="vechicle_state" required>
+							<option value=""> State of Vechicle</option>
+							<option value="new"> New</option>
+							<option value="used"> Used</option>
+						</select>
+					</section>
+					<section class="inputGroup">
+						<select class="inputSelect" name="vechicle_status`" required>
+							<option value=""> Vechicle Status</option>
+							<option value="available">Available</option>
+							<option value="sold">Sold</option>
+						</select>
+					</section>
+					<section class="inputGroup">
+						  <input class="input"  type="number" name="vechicle_price" min="1" max="50000000" placeholder="Vechicle Price *" required>
+					</section>
+					<section class="inputGroup">
+						  <input class="input" type="text" name="vechicle_manufactuer" required  placeholder="Vechicle Manufactuer*" />
+					</section>
+					<section class="inputGroup">
+						  <input class="input" type="text" name="vechicle_model" required  placeholder="Vechicle Model*" />
+					</section>
+					<section class="inputGroup">
+						  <input class="input" type="text" name="vechicle_body_type" required  placeholder="Vechicle Body Type*" />
+					</section>
+					<section class="inputGroup">
+						  <input type="file" name="files" multiple="multiple" required>
+					</section>
+					<section class="inputGroup">
+						<textarea class="inputTextArea" name="description" required spellcheck="true" placeholder="Description about the vehicle"></textarea>
+					</section>
+					<button class="btn" type="submit">Post Car Sale Advert</button>
+				</form>	
+			</section>
+		</section>
+		
+		<section class="clearfix"></section>
+		<footer id="footerBoxDashboard" w3-include-html="segments/footer.html"></footer>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>

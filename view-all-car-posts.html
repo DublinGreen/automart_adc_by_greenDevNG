@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Vehicle Market Board</title>
+		<meta name="robots"  content="noindex" />
+		<meta name="author" content="Dublin-Green (greendublin007@gmail.com)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		
+		<link rel="icon" type="image/x-icon" href="favicon.png" />		
+		<link rel="stylesheet" href="assets/css/main.css">
+	</head>
+	
+	<body id="bannerDashboard2">
+		<head>
+			<nav id="navigation" w3-include-html="segments/user-nav.html"></nav>
+		</head>
+		
+		
+		<section class="mainContainer">
+			
+			<section class="userContentAreaFull" >
+				<h1 class="text-center">Vehicle Market</h1><hr>
+				<p class="text-instruction text-center">Choose from a wide range of vechicle on <span class="vehicleStatusOnSale">sale</span> Click the car image for more information.</p><hr>
+				
+				<section class="dashboardPurchaseOrderBoxFull" >
+					
+					<form action="" method="post">
+						<section class="inputGroup">
+							<input class="inputSearch" type="text" name="search" placeholder="Search" required list="cars" />
+							
+							<select class="inputSelectSearch" name="vechicle_state">
+								<option selected="" value="all"> Search All Attributes</option>
+								<option value="manufactuers"> Manufactuers</option>
+								<option value="model"> Model</option>
+								<option value="body_type"> Body Type</option>
+								<option value="price_range"> Price Range</option>
+							</select>
+							<button class="btnSearch" type="submit">Filter Vechicles</button>
+						</section>
+						
+						<datalist id="cars">
+							<option label='Toyota'>Toyota</option>
+							<option label='Honda'>Honda</option>
+							<option label='BMW'>BMW</option>
+							<option label='Audi'>Audi</option>
+						</datalist>		
+					</form>
+					
+					<section class="vechiclemarketBox">
+						<figure class="vechiclemarketBoxDetails">
+							<h3 class="text-center">BMW - 8 Series</h3>
+							<a href="view-car.html">
+								<img class="vehicleImage" src="assets/img/demoCars/6.jpg"  alt="vehicle image" title="vehicle image"/>
+							</a>
+							<article class="pull-left userContentAreaFull">
+								<h3 class="text-center vehicleMoney">&#8358;7,000,000</h3>
+							</article>
+														
+							<section class="clearfix"></section>
+						</figure>
+					</section>
+					
+					<section class="vechiclemarketBox">
+						<figure class="vechiclemarketBoxDetails">
+							<h3 class="text-center">Mercedes - G-Wagon</h3>
+							<a href="view-car.html">
+								<img class="vehicleImage" src="assets/img/demoCars/7.jpg"  alt="vehicle image" title="vehicle image"/>
+							</a>
+							<article class="pull-left userContentAreaFull">
+								<h3 class="text-center vehicleMoney">&#8358;13,520,000</h3>
+							</article>
+														
+							<section class="clearfix"></section>
+						</figure>
+					</section>
+					
+					<section class="vechiclemarketBox">
+						<figure class="vechiclemarketBoxDetails">
+							<h3 class="text-center">BMW - 8 Series</h3>
+							<a href="view-car.html">
+								<img class="vehicleImage" src="assets/img/demoCars/6.jpg"  alt="vehicle image" title="vehicle image"/>
+							</a>
+							<article class="pull-left userContentAreaFull">
+								<h3 class="text-center vehicleMoney">&#8358;4,300,000</h3>
+							</article>
+														
+							<section class="clearfix"></section>
+						</figure>
+					</section>
+
+					<section class="vechiclemarketBox">
+						<figure class="vechiclemarketBoxDetails">
+							<h3 class="text-center">Mercedes - G-Wagon</h3>
+							<a href="view-car.html">
+								<img class="vehicleImage" src="assets/img/demoCars/7.jpg"  alt="vehicle image" title="vehicle image"/>
+							</a>
+							<article class="pull-left userContentAreaFull">
+								<h3 class="text-center vehicleMoney">&#8358;7,000,000</h3>
+							</article>
+														
+							<section class="clearfix"></section>
+						</figure>
+					</section>
+
+					<section class="vechiclemarketBox">
+						<figure class="vechiclemarketBoxDetails">
+							<h3 class="text-center">BMW - 8 Series</h3>
+							<a href="view-car.html">
+								<img class="vehicleImage" src="assets/img/demoCars/6.jpg"  alt="vehicle image" title="vehicle image"/>
+							</a>
+							<article class="pull-left userContentAreaFull">
+								<h3 class="text-center vehicleMoney">&#8358;2,500,000</h3>
+							</article>
+														
+							<section class="clearfix"></section>
+						</figure>
+					</section>
+
+				</section>
+				
+			</section>
+		</section>
+		
+		<section class="clearfix"></section>
+		<footer id="footerBoxDashboard" w3-include-html="segments/footer.html"></footer>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>View Purchase Order</title>
+		<meta name="robots"  content="noindex" />
+		<meta name="author" content="Dublin-Green (greendublin007@gmail.com)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		
+		<link rel="icon" type="image/x-icon" href="favicon.png" />		
+		<link rel="stylesheet" href="assets/css/main.css">
+	</head>
+	
+	<body id="bannerDashboard">
+		<head>
+			<nav id="navigation" w3-include-html="segments/user-nav.html"></nav>
+		</head>
+		
+		
+		<section class="mainContainer">
+			
+			<section class="userContentAreaFull">
+				<h1 class="text-center">Purchase Order </h1><hr>
+				<p class="text-instruction">Please respond by <em class="text-success">Accepting</em> or <em class="text-danger">Rejecting</em> the purchase order.  </p><hr>
+				
+				<section class="dashboardPurchaseOrderBoxFull" >
+					
+					<figure class="purchaseOrderVehicleDashboard">
+						<img class="vehicleImage" src="assets/img/demoCars/6.jpg"  alt="vehicle image" title="vehicle image"/>
+						
+						<article class="pull-left">
+							<h3 class="vehicleMoney">&#8358;7,000,000</h3>
+							<span class="vehicleStatusPending">Pending</span>
+						</article>
+						
+						<section class="clearfix"></section>
+						
+						<h2 class="vehicleInforHeader text-center">Buyer Information</h2>
+						<p class="read"><strong>Name: </strong>Bernard Dublin-Green</p>
+						<p class="read"><strong>Email: </strong><a href="mailto:greendublin007@gmail.com">greendublin007@gmail.com</a></p>
+						<p class="read"><strong>Address: </strong>Badore Ajah Lagos Nigeria</p>
+						
+						<section class="clearfix"></section>
+						
+						<section class="full-page">
+							<form action="purchase-orders.html" method="post"  id="confirmAcceptOrder">
+								<input type="hidden" name="purchase_order_token" value="10109191" />
+								<button class="btn-success" type="submit">Accept Offer</button>
+							</form>
+							
+							<form action="view-purchase-order.html" method="post"  id="confirmRejectOrder">
+								<input type="hidden" name="purchase_order_token" value="10109191" />
+								<button class="btn-danger" type="submit">Reject Offer</button>
+							</form>
+						
+						</section>
+						
+						<section class="clearfix"></section>
+
+					</figure>
+					
+				</section>
+				
+			</section>
+		</section>
+		
+		<section class="clearfix"></section>
+		<footer id="footerBoxDashboard" w3-include-html="segments/footer.html"></footer>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>

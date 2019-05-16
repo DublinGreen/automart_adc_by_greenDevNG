@@ -1,13 +1,16 @@
+ @import url("media.css");
 /**
  *  Main stylesheet for automart challenge
  * main.css
  * By Dublin-Green
  * 
+ * import media css
  *  ID
  *  CLASS
  *  TAGS
-*   @media queries
+ *  media css import
  * **/
+ 
  
  /** ID START **/
  
@@ -17,7 +20,24 @@
 	margin: 0;
 	border-radius: 5px;
 	opacity: 0.9;
-	height: 20px;
+	height: 10%;
+ }
+ 
+ #confirmAcceptOrder{
+	float: left;
+	margin: 0px;
+	padding-right: 0px;	
+	height: 50px;
+	padding-top: 1%;
+	margin-right: 20px;
+ }
+ 
+ #confirmRejectOrder{
+	float: left;
+	margin: 0px;
+	padding-right: 0px;	
+	height: 50px;
+	padding-top: 2px;
  }
  
  #navigationLeft{
@@ -33,6 +53,15 @@
  
  #bannerDashboard{
  	background: url("../img/banners/6.jpg") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 100%;
+ }
+ 
+#bannerDashboard2{
+ 	background: url("../img/banners/1.jpg") no-repeat center center fixed; 
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -192,7 +221,11 @@
 
 .dashboardPurchaseOrderBox{
 	overflow: auto;
-	 height: 300px
+	 height: 550px
+}
+
+.dashboardPurchaseOrderBoxFull{
+	 overflow: hidden;
 }
 
 .vehicleImage{
@@ -204,9 +237,11 @@
 .mainContainer{
 	width: 90%;
 	padding: 3%;
+	overflow: hidden;
 	background: #ffffff;
 	color: #333333;
-	height: 500px;
+	opacity: 0.9;
+	
 	border-radius: 90px 0px 90px 0px; 
 	margin-top: 2.5%;
 	margin-right: 2%;
@@ -259,7 +294,7 @@
 	background: #ff0000;
 	border: 2px inset #ff0000;
 	color: #ffffff;
-	height: 60%;
+	over-flow: hidden;
 	opacity: 0.9;
 	border-radius: 90px 0px 90px 0px; 
 	margin-top: 0;
@@ -277,6 +312,19 @@
 	border-radius: 5px 20px 5px;
 	height: auto;
 	margin-top: 1%;
+}
+
+.userContentAreaFull{
+	width: 100%;
+	float: left;
+	padding: 1%;
+	background: #ffffff;
+	color: #333333;
+	opacity: 0.9;
+	border-radius: 5px 20px 5px;
+	overflow: hidden;
+	margin-top: 1%;
+	padding-bottom: 20px;
 }
 
 .halfContainerUserBoxLeft{
@@ -307,7 +355,7 @@
 }
 
 .halfContainerUserBoxRight2{
-	margin-top : 135px;
+	margin-top : 10%;
 }
 
 .halfContainerUserBoxRight h1{
@@ -327,17 +375,57 @@
 }
 
 .vehicleMoney{
+	clear: both;
 	color: #00ff00;
 	font-weight: bold;
 	font-size: 2em;
-	margin-top: 0px
+	margin-top: 0px;
+	text-align: center;
+	overflow: hidden;
+	width: 100%;
+}
+
+.viewVehicleMoney{
+	clear: both;
+	color: #00ff00;
+	font-weight: bold;
+	font-size: 2em;
+	margin-top: 0px;
+	text-align: center;
+	overflow: hidden;
+	width: auto;
+}
+
+.viewVehicleMoney2{
+	clear: both;
+	color: #00ff00;
+	font-weight: bold;
+	font-size: 2em;
+	margin-top: 0px;
+	text-align: center;
+	overflow: hidden;
+	width: auto;
+}
+
+.full-page{
+	width: 100%;
 }
 
 .purchaseOrderVehicleDashboard{
-	margin-bottom: 10%;
-	border-bottom: 5px dotted #ff0000;
-	padding-bottom: 5%;
-	
+	margin-bottom: 5%;
+	padding-bottom: 40px;
+	border-bottom: 5px dotted #ff0000;	
+}
+
+.vechiclemarketBox{
+	width: 30%;
+	float: left;
+}
+
+.vechiclemarketBoxDetails{
+	margin-bottom: 0;
+	padding-bottom: 1px;
+	border-bottom: 5px dotted #ff0000;	
 }
 
 .vehicleStatusPending{
@@ -348,6 +436,87 @@
 	font-weight: 600;
 	border: 3px outset #ffff00;
 	font-size: 2em;
+	text-shadow: none;
+}
+
+.userContentAside{
+	border: 1px solid #ff0000;
+	width: 50%;
+	float: left;
+	border-radius: 90px 0px 90px 0px;
+	padding: 1%;
+}
+
+.vechicleTable{
+	border: 1px solid #333333;
+	font-size: 2em;
+	border-radius: 15px;
+	box-shadow: 3px 3px 3px #333333;
+	padding: 4%;
+	background-color: #ff0000;
+	color: #ffffff;	
+	width: 90%;
+}
+
+.tableSubject{
+	border-right: 1px solid #333333;
+	border-bottom: 1px solid #333333;
+	text-align: center;
+	font-size: 0.7em;
+}
+
+.tableValue{
+	border-bottom: 1px solid #333333;
+	text-align: center;
+	font-weight: bold;
+	background-color: #ffffff;
+	color: #333333;
+}
+
+.vehicleImageMultipleBox{
+	width: 350px;
+	height: 200px;
+	overflow: auto;
+	white-space: nowrap;
+	margin-top: 30px;
+}
+
+.vehicleImageMultipleBox figure{
+	float: left;
+	margin: 0px;
+	padding-bottom: 3%;
+	width: 53.33%;
+}
+
+.vehicleStatusAvailable{
+	color: #ff0000;
+	background-color: #ffff00;
+	border-radius: 50%;
+	padding: 6%;
+	font-weight: 600;
+	border: 3px outset #ffff00;
+	font-size: 2em;
+	text-shadow: none;
+}
+
+.vehicleStatusAvailableSmall{
+	color: #ff0000;
+	background-color: #ffff00;
+	border-radius: 50%;
+	padding: 1%;
+	font-weight: 600;
+	border: 3px outset #ffff00;
+	font-size: 0.7em;
+	text-shadow: none;
+}
+
+.vehicleStatusOnSale{
+	color: #ff0000;
+	background-color: #ffff00;
+	border-radius: 50%;
+	padding: 1%;
+	font-weight: 600;
+	border: 3px outset #ffff00;
 	text-shadow: none;
 }
 
@@ -369,6 +538,23 @@
 
 .inputTextArea{
 	padding: 1%;
+	height: 35px;
+	width: 70%;
+	border-radius: 5px;
+	box-shadow: 3px 3px 3px #888888;
+}
+
+.inputSearch{
+	height:20px;
+	width: 30%;
+	border-radius: 5px;
+	box-shadow: 3px 3px 3px #888888;
+	height: 25px;
+	padding: 1%;
+}
+
+.inputTextArea{
+	padding: 1%;
 	height: 55px;
 	width: 70%;
 	border-radius: 5px;
@@ -380,6 +566,17 @@
 	width: 73%;
 	border-radius: 5px;
 	box-shadow: 3px 3px 3px #888888;
+	background-color: #ffffff;
+}
+
+.inputSelectSearch{
+	padding: 1%;
+	width: 20%;
+	border-radius: 5px;
+	box-shadow: 3px 3px 3px #888888;
+	margin-left: 20px;
+	height: 50px;
+	background-color: #ffffff;
 }
 
 .read{
@@ -399,6 +596,22 @@
 	font-weight: bold;
 }
 
+.btnSearch{
+	color: #ffffff;
+	background-color: #ff0000;
+	border: none;
+	padding: 8px 27px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 20px;
+	border-radius: 5px;
+	font-weight: bolder;
+	box-shadow: 3px 3px 3px #333333;
+	margin-left: 10px;
+	margin-top: 20px;
+}
+
 .text-success{
 	color: #00ff00;
 }
@@ -410,6 +623,19 @@
 .btn-success{
 	color: #ffffff;
 	background-color: #00ff00;
+	border: none;
+	padding: 5px 27px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 18px;
+	border-radius: 5px;
+	font-weight: bold;
+}
+
+.btn-warning{
+	color: #ffffff;
+	background-color: #ffff00;
 	border: none;
 	padding: 5px 27px;
 	text-align: center;
@@ -478,109 +704,3 @@ blink {
 }
 
 /** TAGS END **/
-
-
-/** @ MEDIA QUERIES **/
- @-webkit-keyframes condemned_blink_effect { 
-  0% {
-    visibility: hidden;
-  }
-  50% {
-    visibility: hidden;
-  }
-  100% {
-    visibility: visible;
-  }
-}
-
-@keyframes condemned_blink_effect {
-  0% {
-    visibility: hidden;
-  }
-  50% {
-    visibility: hidden;
-  }
-  100% {
-    visibility: visible;
-  }
-}
-
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-	.halfContainerUserBoxLeft{
-		width: 100%;
-	}
-  
-	.halfContainerUserBoxRight{
-		width: 100%;
-	}
-	
-	.userMenu{
-		width: 100%;
-		border: none;
-	}
-
-	.userContentArea{
-		width: 100%;
-	} 
-	
-	#navigationLeft{
-		float: left;
-		width: 55%;
-		margin-left: 5%;
-	}
- 
-	#navigationRight{
-		float: right;
-		width: 40%;
-	}
-} 
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-	.halfContainerUserBoxLeft{
-		width: 100%;
-	}
-  
-	.halfContainerUserBoxRight{
-		width: 100%;
-	}
-	
-	.userMenu{
-		width: 100%;
-		border: none;
-	}
-
-	.userContentArea{
-		width: 100%;
-	} 
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-	.halfContainerUserBoxLeft{
-		width: 38%;
-	}
-  
-	.halfContainerUserBoxRight{
-		width: 48%;
-	}
-	
-	.userMenu{
-		width: 38%;
-	}
-
-	.userContentArea{
-		width: 48%;
-	} 
-} 
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-
-} 
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-
-}
- /** @ MEDIA QUERIES END **/

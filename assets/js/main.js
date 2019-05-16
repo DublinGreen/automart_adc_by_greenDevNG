@@ -1,11 +1,11 @@
 const includeHTMLSegments = () => {
-  let z, i, elmnt, file, xhttp;
+  let tags, i, elmnt, file, xhttp;
   let pageLoadingStatus = false;
   
   /*loop through a collection of all HTML elements:*/
-  z = document.getElementsByTagName("*");
-  for (i = 0; i < z.length; i++) {
-    elmnt = z[i];
+  tags = document.getElementsByTagName("*");
+  for (i = 0; i < tags.length; i++) {
+    elmnt = tags[i];
     /*search for elements with a certain atrribute:*/
     file = elmnt.getAttribute("w3-include-html");
     if (file) {
@@ -33,12 +33,71 @@ const includeHTMLSegments = () => {
   }
 };
 
+const prepEventHandlersConfirmationPurchaseOrderReject = () => {		
+	let answer = confirm("Are you sure you want to reject this purchase order?");		
+	
+	if(answer == true){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+const confirmAcceptOrderDialog = () => {
+	
+}
 
 const prepareHandlers = () => {
-	includeHTMLSegments();
+	includeHTMLSegments();	
+	
+	//we using a single js page so if the #confirmAcceptOrder or #confirmRejectOrder doesn't exist in the current page DOM, it throws an error in the console
+	try{
+		document.getElementById("confirmAcceptOrder").onsubmit = function(){
+			let answer = confirm("Are you sure you want to accept this purchase order?");		
+			
+			if(answer == true){
+				return true;
+			}else{
+				return false;
+			}
+		};
+	}catch(err) {
+		//alert(err);
+	}
+	
+	try{
+		document.getElementById("confirmRejectOrder").onsubmit = function(){
+			let answer = confirm("Are you sure you want to reject this purchase order?");		
+			
+			if(answer == true){
+				return true;
+			}else{
+				return false;
+			}
+		};
+	}catch(err) {
+		//alert(err);
+	}	
+		
+	try{
+		document.getElementById("confirmVehicleDataUpdate").onsubmit = function(){
+			let answer = confirm("Are you sure you want to update this car sale advert?");		
+			
+			if(answer == true){
+				return true;
+			}else{
+				return false;
+			}
+		};			
+	}catch(err) {
+		//alert(err);
+	}
+	
+	
+		
 }
 
 window.onload = function(){
-	prepareHandlers();
+	prepareHandlers();	
 }
 
