@@ -14,6 +14,26 @@
  
  /** ID START **/
  
+ 
+ #alert{
+	background-color: #4587a9;
+	color: #e9f7fe;
+	padding: 3px 20px;
+	border-radius: 15px;
+	margin: 10px10px;
+ }
+ 
+ #alert p{
+	font-weight: bold;
+	font-size: 1.1em;
+ }
+ 
+ #closeAlert{
+	float: right;
+	background-color: #4587a9;
+	color: #ffffff;	
+ }
+
  #navigation{
 	background-color: #ff0000;
 	padding: 1% 1%;

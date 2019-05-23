@@ -25,8 +25,14 @@
 			</article>
 			
 			<article class="halfContainerUserBoxRight halfContainerUserBoxRight2">
-				<form action="#" method="post">
+				<form action="login.html" method="post" name="userLoginForm" autocomplete="off">
 					<h1>Login</h1><hr>
+					<section id="alert">
+						<button type="button" id="closeAlert">X</button>
+						<section class="clearfix"></section>
+						<p>Email and password combination incorrect</p>
+					</section><br>
+					
 					<section class="inputGroup">
 						<input class="input" type="email" name="email" required  placeholder="Email*" title="Your Email Here"/>
 					</section>
@@ -41,7 +47,11 @@
 		</section>
 		
 		<section class="clearfix"></section>
-		<footer id="footerBox" w3-include-html="segments/footer.html"></footer>
+		<footer id="footerBoxDashboard" w3-include-html="segments/footer.html"></footer>
+		
+		<script src="assets/js/apiConfig.js"></script>
+		<script src="assets/js/userLogin.js"></script>
+		
 		<script src="assets/js/main.js"></script>
 	</body>
 </html>
