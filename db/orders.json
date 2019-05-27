@@ -1,0 +1,17 @@
+{
+   {
+      "id" : Integer,
+      "buyer" : Integer,
+      "car_id" : integer,
+      "amount": Float,
+      "status": String
+   },
+   
+	{
+      "id" : Integer,
+      "buyer" : Integer,
+      "car_id" : integer,
+      "amount": Float,
+      "status": String
+   }
+}

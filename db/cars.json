@@ -1,0 +1,25 @@
+{
+   {
+      "id" : Integer,
+      "owner" : Integer,
+      "created_on" : DateTime,
+      "state": String,
+      "status": String,
+      "price": Float,
+      "manufacturer": String,
+      "model": String,
+      "body_type": String
+   },
+   
+   {
+      "id" : Integer,
+      "owner" : Integer,
+      "created_on" : DateTime,
+      "state": String,
+      "status": String,
+      "price": Float,
+      "manufacturer": String,
+      "model": String,
+      "body_type": String
+   }
+}
