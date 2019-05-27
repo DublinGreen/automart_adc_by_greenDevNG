@@ -47,40 +47,94 @@ const confirmAcceptOrderDialog = () => {
 	
 }
 
+const loadScriptsAsNeeded = () => {
+	let currentPage = window.location.href;
+	let lastPosOfSlash = currentPage.lastIndexOf("/") + 1; // i don't need the slash
+	let justPageNameWithExtension = currentPage.substring(lastPosOfSlash, currentPage.length);
+	let lookingForHash = currentPage.lastIndexOf("#") + 1; // we don't want hash #
+	
+	// not 0, means there is a # in the url
+	if(lookingForHash !== 0 && justPageNameWithExtension != "passwordreset.html"){
+		//window.location = "login.html"; // We don't want hash, it will break this logic
+	}
+	
+	console.log("justPageNameWithExtension >>>>>" , justPageNameWithExtension);
+	if(justPageNameWithExtension === "login.html"){		
+		let pageJs = document.createElement('script');
+		pageJs.src = 'assets/js/userLogin.js';
+		document.head.appendChild(pageJs);	
+	}
+	
+	if(justPageNameWithExtension === "purchase-orders.html"){
+		
+	}
+	
+	if(justPageNameWithExtension === "passwordrecovery.html"){		
+		let pageJs = document.createElement('script');
+		pageJs.src = 'assets/js/userPasswordRecovery.js';
+		document.head.appendChild(pageJs);	
+	}
+	
+	if(justPageNameWithExtension === "signup.html"){		
+		let pageJs = document.createElement('script');
+		pageJs.src = 'assets/js/userSignup.js';
+		document.head.appendChild(pageJs);
+	}
+	
+	if(justPageNameWithExtension === "about.html"){		
+		let pageJs = document.createElement('script');
+		pageJs.src = 'assets/js/about.js';
+		document.head.appendChild(pageJs);
+	}
+}
+
 const prepareHandlers = () => {
 	includeHTMLSegments();	
 	
-	//we using a single js page so if the #confirmAcceptOrder or #confirmRejectOrder doesn't exist in the current page DOM, it throws an error in the console
 	try{
-		document.getElementById("confirmAcceptOrder").onsubmit = function(){
-			let answer = confirm("Are you sure you want to accept this purchase order?");		
-			
-			if(answer == true){
-				return true;
-			}else{
-				return false;
-			}
-		};
+		let confirmAcceptOrder = document.getElementById("confirmAcceptOrder");
+		
+		if(confirmAcceptOrder != null){
+			confirmAcceptOrder.onsubmit = function(){
+				let answer = confirm("Are you sure you want to accept this purchase order?");		
+					
+				if(answer == true){
+					return true;
+				}else{
+					return false;
+				}
+			};	
+		}
 	}catch(err) {
-		//console.log("Problems with confirmAcceptOrder (ID) form submission");
+		console.log("Problems with confirmAcceptOrder (ID) form submission" , err);
 	}
 		
 	try{
-		document.getElementById("confirmVehicleDataUpdate").onsubmit = function(){
-			let answer = confirm("Are you sure you want to update this car sale advert?");		
-			
-			if(answer == true){
-				return true;
-			}else{
-				return false;
-			}
-		};			
+		let confirmVehicleDataUpdate = document.getElementById("confirmVehicleDataUpdate");
+		if(confirmVehicleDataUpdate != null){
+			confirmVehicleDataUpdate.onsubmit = function(){
+				let answer = confirm("Are you sure you want to update this car sale advert?");		
+				
+				if(answer == true){
+					return true;
+				}else{
+					return false;
+				}
+			};				
+		}		
 	}catch(err) {
-		//console.log("Problems with confirmVehicleDataUpdate (ID) form submission");
+		console.log("Problems with confirmVehicleDataUpdate (ID) form submission", err);
 	}
-			
 }
 
+try{
+	loadScriptsAsNeeded();
+	let loading = document.getElementById('loading') ;
+	loading.style.display = "none";	
+}catch(err){
+	console.log("Importing other needed scripts file failed : " , err);
+}
+	
 window.onload = function(){
 	prepareHandlers();	
 }

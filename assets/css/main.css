@@ -14,6 +14,22 @@
  
  /** ID START **/
  
+ #loading{
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 230px;
+	z-index: 99;
+ }
+ 
+ #loading > img {
+	display: block;
+	margin: auto;
+	border-radius: 50%;
+	width: 180px;
+	opacity: 0.9;
+	box-shadow: 3px 3px 3px #333333;
+}
  
  #alert{
 	background-color: #4587a9;

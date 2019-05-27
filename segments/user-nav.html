@@ -1,5 +1,6 @@
+				<noscript>Your browser does not support JavaScript!</noscript>
 				<section id="navigationLeft">
-					<a href="#" class="navigatorButton">Dashboard</a>
+					<a href="purchase-orders.html" class="navigatorButton">Dashboard</a>
 					<section class="dropdown">
 						<span class="btn-top-dashboard-alt">My Vehicles</span>
 						<section class="dropdown-content">
@@ -17,7 +18,8 @@
 						<span class="btn-top-dashboard">Username...</span>
 						<section class="dropdown-content">
 							<a href="#">Profile</a> ||
-							<a href="login.html">Logout</a>	
+							<!--// i trully hate doing this but this is the only way this could work because am dynamically loading the script and this section of the page-->
+							<a href="javascript:void(0)" id="logout" onclick="logoutUser()">Logout</a>	
 						</section>
 					</section>
 					

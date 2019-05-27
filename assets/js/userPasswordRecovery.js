@@ -3,7 +3,7 @@ let alertContent = document.getElementById("alertContent");
 let closeAlertButton = document.getElementById("closeAlert"); 
 let loading = document.getElementById('loading') ;
 
-const loginApiCall = (email, password) => {
+const passwordRecovery = (email) => {
 	let xhttp = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
 	
 	xhttp.onreadystatechange = function() {
@@ -16,11 +16,9 @@ const loginApiCall = (email, password) => {
 			
 			if(statusObj == 200){
 				// close alert box
-				alertSection.style.display = "none";
-				alertSection.style.height = "0px";	
-				
-				storeToken(dataObj.token);
-				window.location = "purchase-orders.html"; // login success, so redirect to dashboard page.
+				alertSection.style.display = "block";
+				alertSection.style.height = "100px";	
+				alertContent.innerHTML = "Email (" + dataObj.email +  ") has been confirmed, Click link to reset password <a href='" +  dataObj.password_reset_page + "'  title='Reset password' >Reset Passowrd</a> ";
 			}
 			
 			if(statusObj == 400){
@@ -30,33 +28,28 @@ const loginApiCall = (email, password) => {
 			}			
 		}
 	};
-	xhttp.open("POST", apiLogin, true);
+	xhttp.open("POST", apiPasswordRecovery, true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	let parameters = "email=" + email + "&password=" + password;
+	let parameters = "email=" + email;
 	xhttp.send(parameters);
 }
 
 try{						
 	alertSection.style.display = "none";
 	alertSection.style.height = "0px";
-
-	//check if already logged in
-	redirectToDashboardAlreadyLogin();	
 	
-	document.userLoginForm.onsubmit = function(){		
-		let email = document.userLoginForm.email.value;
-		let password = document.userLoginForm.password.value;
-		
-		document.userLoginForm.email.value = email;
-		document.userLoginForm.password.value = password;
+	document.passwordRecovery.onsubmit = function(){		
+		let email = document.passwordRecovery.email.value;
+		document.passwordRecovery.email.value = email;
 		
 		loading.style.display = "block";
-		loginApiCall(email,password);			
+		passwordRecovery(email);			
 		return false; // i don't need the form to submit to any action page
 	};
 		
 	closeAlertButton.addEventListener("click", closeAlertButtonHandler);//closeAlert handler
 }catch(err) {
-	console.log("userLogin.js operations error : " , err);
+	console.log("userPasswordRecovery.js operations error : " , err);
 }
+
 

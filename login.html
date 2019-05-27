@@ -10,9 +10,13 @@
 		
 		<link rel="icon" type="image/x-icon" href="favicon.png" />		
 		<link rel="stylesheet" href="assets/css/main.css">
+		<script src="assets/js/apiConfig.js"></script>		
 	</head>
 	
 	<body id="banner">
+		<section id="loading">
+			<img src="assets/img/giphy.gif" alt="loading" />
+		</section>
 		<head>
 			<nav id="navigation" w3-include-html="segments/nav.html"></nav>
 		</head>
@@ -25,12 +29,12 @@
 			</article>
 			
 			<article class="halfContainerUserBoxRight halfContainerUserBoxRight2">
-				<form action="login.html" method="post" name="userLoginForm" autocomplete="off">
+				<form action="login.html" method="post" name="userLoginForm" autocomplete="on">
 					<h1>Login</h1><hr>
 					<section id="alert">
 						<button type="button" id="closeAlert">X</button>
 						<section class="clearfix"></section>
-						<p>Email and password combination incorrect</p>
+						<p id ="alertContent">&nbsp;</p>
 					</section><br>
 					
 					<section class="inputGroup">
@@ -48,10 +52,7 @@
 		
 		<section class="clearfix"></section>
 		<footer id="footerBoxDashboard" w3-include-html="segments/footer.html"></footer>
-		
-		<script src="assets/js/apiConfig.js"></script>
-		<script src="assets/js/userLogin.js"></script>
-		
+			
 		<script src="assets/js/main.js"></script>
 	</body>
 </html>

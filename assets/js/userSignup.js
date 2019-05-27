@@ -3,7 +3,7 @@ let alertContent = document.getElementById("alertContent");
 let closeAlertButton = document.getElementById("closeAlert"); 
 let loading = document.getElementById('loading') ;
 
-const loginApiCall = (email, password) => {
+const signupApiCall = (email,first_name,last_name,password,address) => {
 	let xhttp = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
 	
 	xhttp.onreadystatechange = function() {
@@ -19,8 +19,9 @@ const loginApiCall = (email, password) => {
 				alertSection.style.display = "none";
 				alertSection.style.height = "0px";	
 				
+				console.log(dataObj);
 				storeToken(dataObj.token);
-				window.location = "purchase-orders.html"; // login success, so redirect to dashboard page.
+				window.location = "purchase-orders.html"; // registration success, so redirect to dashboard page.
 			}
 			
 			if(statusObj == 400){
@@ -30,9 +31,9 @@ const loginApiCall = (email, password) => {
 			}			
 		}
 	};
-	xhttp.open("POST", apiLogin, true);
+	xhttp.open("POST", apiSignup, true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	let parameters = "email=" + email + "&password=" + password;
+	let parameters = "email=" + email + "&first_name=" + first_name + "&last_name=" + last_name + "&password=" + password + "&address=" + address;
 	xhttp.send(parameters);
 }
 
@@ -43,20 +44,26 @@ try{
 	//check if already logged in
 	redirectToDashboardAlreadyLogin();	
 	
-	document.userLoginForm.onsubmit = function(){		
-		let email = document.userLoginForm.email.value;
-		let password = document.userLoginForm.password.value;
-		
-		document.userLoginForm.email.value = email;
-		document.userLoginForm.password.value = password;
+	document.userSignup.onsubmit = function(){		
+		let email = document.userSignup.email.value;
+		let first_name = document.userSignup.first_name.value;
+		let last_name = document.userSignup.last_name.value;
+		let password = document.userSignup.password.value;
+		let address = document.userSignup.address.value;
+				
+		document.userSignup.email.value = email;
+		document.userSignup.first_name.value = first_name;
+		document.userSignup.last_name.value = last_name;
+		document.userSignup.password.value = password;
+		document.userSignup.address.value = address;
 		
 		loading.style.display = "block";
-		loginApiCall(email,password);			
+		signupApiCall(email,first_name,last_name,password,address);			
 		return false; // i don't need the form to submit to any action page
 	};
 		
 	closeAlertButton.addEventListener("click", closeAlertButtonHandler);//closeAlert handler
 }catch(err) {
-	console.log("userLogin.js operations error : " , err);
+	console.log("userSignup.js operations error : " , err);
 }
 
