@@ -29,7 +29,7 @@ module.exports = {
 	},
 	
 	genToken: function (string) {
-		string = string + "ADC_CYCLE_45_greenDevNG" + new Date();
+		string = `${string}ADC_CYCLE_45_greenDevNG${new Date()}`;
 		let token = BCRYPT.hashSync(string, 10);
 		return token;
 	},

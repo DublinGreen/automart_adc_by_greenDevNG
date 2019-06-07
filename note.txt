@@ -1,1 +1,40 @@
 REpresentational State Transfer for automart challenge andela bootcamp cycle 45
+
+RAML to document your APIs and read the documentation in ARC
+
+
+https://newfivefour.com/javascript-express-multi-files-cloudinary.html
+
+
+  var formData = new FormData()
+    formData.append("name", "hi")
+    formData.append("image", file1)
+    formData.append("image", file2)
+
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
+const upload = multer({ dest: 'uploads/' })
+
+cloudinary.config({ 
+  cloud_name: 'xxx', 
+  api_key: 'xxx', 
+  api_secret: 'xx' 
+});
+
+var parser = multer({ 
+  storage: cloudinaryStorage({
+    cloudinary: cloudinary,
+    folder: 'xxx',
+    filename: function (req, file, cb) {
+      cb(undefined, file.originalname);
+    }
+  })
+});
+
+
+router.post('/uploadImages', parser.array('image'), (req, res, next) => {
+  console.log(req.files)
+  // req.files will show you the uploaded files
+  // and req.body will show you the rest of your form data
+  res.json("done")
+})

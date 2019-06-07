@@ -32,7 +32,8 @@
     "express": "^4.17.0",
     "express-session": "^1.16.1",
     "jsonwebtoken": "^8.5.1",
-    "multer": "^1.4.1"
+    "multer": "^1.4.1",
+    "multer-storage-cloudinary": "^2.2.1"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

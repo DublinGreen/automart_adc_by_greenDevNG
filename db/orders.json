@@ -1,17 +1,1 @@
-{
-   {
-      "id" : Integer,
-      "buyer" : Integer,
-      "car_id" : integer,
-      "amount": Float,
-      "status": String
-   },
-   
-	{
-      "id" : Integer,
-      "buyer" : Integer,
-      "car_id" : integer,
-      "amount": Float,
-      "status": String
-   }
-}
+[{"id":1,"buyer":1,"car_id":1,"price":2600000,"price_offered":2000000,"status":"PENDING","created_on":"28-05-2019"},{"id":2,"buyer":1,"car_id":1,"price":2600000,"price_offered":1800000,"status":"PENDING","created_on":"28-05-2019"},{"id":3,"buyer":"2","car_id":"3","price":"2500000","price_offered":"1800000","created_on":"2019-6-6"},{"id":4,"buyer":"2","car_id":"3","price":"2500000","price_offered":"1800000","created_on":"2019-6-6"},{"id":5,"buyer":"2","car_id":"3","price":"2500000","price_offered":"1800000","created_on":"2019-6-6"},{"id":6,"buyer":"2","car_id":"3","price":"2500000","price_offered":"1800000","created_on":"2019-6-6"},{"id":7,"buyer":"2","car_id":"3","price":"2500000","price_offered":"1800000","created_on":"2019-6-6"},{"id":8,"buyer":"2","car_id":"3","price":"2500000","price_offered":"1800000","created_on":"2019-6-6"},{"id":9,"buyer":"2","car_id":"3","price":"2500000","price_offered":"1800000","created_on":"2019-6-6"},{"id":10,"buyer":"3","car_id":"3","price":"2500000","price_offered":"2150000","created_on":"2019-6-7"},{"id":11,"buyer":"4","car_id":"3","price":"2500000","price_offered":"1000000","created_on":"2019-6-6"}]
