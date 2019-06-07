@@ -30,7 +30,7 @@ const passwordReset = (password,id,passwordResetToken,resetToken) => {
 	};
 	xhttp.open("POST", apiPasswordReset, true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	let parameters = "password=" + password + "&id=" + id + "&passwordResetToken=" + passwordResetToken + "&resetToken=" + resetToken;
+	let parameters = `password=${password}&id=${id}&passwordResetToken=${passwordResetToken}&resetToken=${resetToken}`;
 	xhttp.send(parameters);
 }
 
@@ -48,7 +48,7 @@ try{
 		let lastPosOfSlash = currentPage.lastIndexOf("/") + 1; // i don't need the slash
 		let justPageNameWithExtension = currentPage.substring(lastPosOfSlash, currentPage.length);
 		
-		let url = new URL("http://" + justPageNameWithExtension);
+		let url = new URL(`http://${justPageNameWithExtension}`);
 		
 		passwordResetToken = url.searchParams.get("passwordResetToken");
 		id = url.searchParams.get("id");

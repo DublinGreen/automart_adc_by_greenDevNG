@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Automart Template Index</title>
+		<title>Welcome To Automart</title>
 		<meta name="robots"  content="noindex" />
 		<meta name="author" content="Dublin-Green (greendublin007@gmail.com)" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,39 +9,56 @@
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		
 		<link rel="icon" type="image/x-icon" href="favicon.png" />		
-		<link rel="stylesheet" href="assets/css/main.css">
+		<link rel="stylesheet" href="assets/css/main.css">		
 	</head>
-	<body>
+	
+	<body id="banner">
+		<section id="loading">
+			<img src="assets/img/giphy.gif" alt="loading" />
+		</section>
+		<head>
+			<nav id="navigation" w3-include-html="segments/nav.html"></nav>
+		</head>
+		
 		
 		<section class="mainContainer">
 			
-			<h1>Hi, welcome to my automart template for Andela cycle 45 bootcamp.</h1><hr>
-		
-			<nav class="userMenu">
-				<a href="login.html" class="userMenuBtn" target="display">User Login</a><br>
-				<a href="signup.html" class="userMenuBtn" target="display">User Signup</a><br>
-				<a href="passwordrecovery.html" class="userMenuBtn" target="display">User Password Recovery</a><br>
-				<a href="post-car-sale-advert.html" class="userMenuBtn" target="display">Post Car Sale Advert</a><br>
-				<a href="update-car-sale-advert.html" class="userMenuBtn" target="display">Update Car Sale Advert</a><br>
-				<a href="purchase-orders.html" class="userMenuBtn" target="display">View All Purchase Orders</a><br>
-				<a href="view-purchase-order.html" class="userMenuBtn" target="display">View Single Purchase Order</a>
-				<a href="view-all-car-posts.html" class="userMenuBtn" target="display">View All Cars For Sale</a>
-				<a href="view-car.html" class="userMenuBtn" target="display">View Single Car Advert</a>
+			<section class="userContentAreaFull" >
+				<h1 class="text-center">Vehicle Market</h1><hr>
+				<p class="text-instruction text-center">Choose from a wide range of vechicles (<span id="totalMarketCount">0</span>) on <span class="vehicleStatusOnSale">sale</span> Click the car image for more information.</p><hr>
 				
-			</nav>
+				<section id="alert">
+					<button type="button" id="closeAlert">X</button>
+					<section class="clearfix"></section>
+					<p id ="alertContent">&nbsp;</p>
+				</section><br>
+				
+				<section class="dashboardPurchaseOrderBoxFull" >
+					
+					<form action="" method="post">
+						<section class="inputGroup">
+							<input class="inputSearch" type="text" name="search" placeholder="Search" required list="cars" />
 
-
-			<section class="userContentArea">
-				<p class="reading"><strong>Don't panic, i know it has no styling.</strong> This page serves as a page helper, click on any of the links to view the UI pages, don't worry the page will open on a new tab.</p>		
+							<button class="btnSearch" type="submit">Filter Vechicles</button>
+						</section>
+						
+						<datalist id="cars">
+						</datalist>		
+					</form>
+					
+					<section id="autoGenCarsBox">
+						<!-- AUTO GENERATED WITH JAVASCRIPT -->
+					</section>
+					
+				</section>
 				
-				<p class="reading">This are just the page template for part 1 of the project. </p>
-				
-				<p class="reading">
-				<strong>gitpages : https://dublingreen.github.io/automart_adc_by_greenDevNG</strong>
-				</p>		
 			</section>
-		
 		</section>
+		
 		<section class="clearfix"></section>
+		<footer id="footerBoxDashboard" w3-include-html="segments/footer.html"></footer>
+		
+		<script src="assets/js/apiConfig.js"></script>	
+		<script src="assets/js/main.js"></script>
 	</body>
 </html>

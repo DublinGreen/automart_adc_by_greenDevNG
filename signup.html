@@ -9,8 +9,7 @@
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		
 		<link rel="icon" type="image/x-icon" href="favicon.png" />		
-		<link rel="stylesheet" href="assets/css/main.css">
-		<script src="assets/js/apiConfig.js"></script>	
+		<link rel="stylesheet" href="assets/css/main.css">	
 	</head>
 	
 	<body id="bannerDashboard">
@@ -26,10 +25,12 @@
 			<article class="halfContainerUserBoxLeft">
 				<h1 class="text-center"><blink>AutoMart </blink></h1><hr>
 				<p class="read">Auto   Mart   is   an   online   marketplace   for   automobiles   of   diverse   makes,   model   or   body   type.   With  Auto Mart, users can sell their cars or buy from trusted dealerships or private sellers. </p>
+				
+				<p class="read"><strong>Create an account, to make purchase orders, advance search, email notifications and more....</strong></p>
 			</article>
 			
 			<article class="halfContainerUserBoxRight">
-				<form action="#" method="post" name="userSignup">
+				<form action="#" method="post" name="userSignup" autocomplete="off">
 					<h1>Registration</h1><hr>
 					<section id="alert">
 						<button type="button" id="closeAlert">X</button>
@@ -38,7 +39,7 @@
 					</section><br>
 					
 					<section class="inputGroup">
-						<input class="input" type="email" name="email" required  placeholder="Email*" title="Your Email Here"/>
+						<input autofocus class="input" type="email" name="email" required  placeholder="Email*" title="Your Email Here"/>
 					</section>
 					<section class="inputGroup">
 						<input class="input" type="text" name="first_name" required  placeholder="First Name*" title="Your First Name Here"/>
@@ -53,12 +54,15 @@
 						<textarea class="inputTextArea" name="address" placeholder="Address"></textarea>
 					</section>
 					<button class="btn" type="submit">Register</button>
+					<a href="login.html">Already have an account?</a>
 				</form>	
 			</article>
 		</section>
 		
 		<section class="clearfix"></section>
 		<footer id="footerBoxDashboard" w3-include-html="segments/footer.html"></footer>
+		
+		<script src="assets/js/apiConfig.js"></script>
 		<script src="assets/js/main.js"></script>
 	</body>
 </html>

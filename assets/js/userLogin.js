@@ -20,6 +20,7 @@ const loginApiCall = (email, password) => {
 				alertSection.style.height = "0px";	
 				
 				storeToken(dataObj.token);
+				storeUserData(dataObj.id,dataObj.email,dataObj.first_name,dataObj.last_name,dataObj.address,dataObj.is_admin);
 				window.location = "purchase-orders.html"; // login success, so redirect to dashboard page.
 			}
 			
@@ -32,7 +33,7 @@ const loginApiCall = (email, password) => {
 	};
 	xhttp.open("POST", apiLogin, true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	let parameters = "email=" + email + "&password=" + password;
+	let parameters = `email=${email}&password=${password}`;
 	xhttp.send(parameters);
 }
 

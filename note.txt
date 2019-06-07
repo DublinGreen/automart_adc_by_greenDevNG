@@ -35,3 +35,7 @@ git push -u https://github.com/DublinGreen/automart_adc_by_greenDevNG features
 git push -u https://github.com/DublinGreen/automart_adc_by_greenDevNG gh-pages
 https://dublingreen.github.io/automart_adc_by_greenDevNG
 
+
+remore parameters from xhttp use formdata
+and clean string adding
+

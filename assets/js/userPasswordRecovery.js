@@ -18,7 +18,7 @@ const passwordRecovery = (email) => {
 				// close alert box
 				alertSection.style.display = "block";
 				alertSection.style.height = "100px";	
-				alertContent.innerHTML = "Email (" + dataObj.email +  ") has been confirmed, Click link to reset password <a href='" +  dataObj.password_reset_page + "'  title='Reset password' >Reset Passowrd</a> ";
+				alertContent.innerHTML = `Email (${dataObj.email}) has been confirmed, Click link to reset password <a href="${dataObj.password_reset_page}" title="Reset password">Reset Password</a>`;
 			}
 			
 			if(statusObj == 400){
@@ -30,7 +30,7 @@ const passwordRecovery = (email) => {
 	};
 	xhttp.open("POST", apiPasswordRecovery, true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	let parameters = "email=" + email;
+	let parameters = `email=${email}`;
 	xhttp.send(parameters);
 }
 

@@ -14,6 +14,10 @@
  
  /** ID START **/
  
+ #userType{
+	font-size: 0.3em;
+ }
+ 
  #loading{
 	height: 100%;
 	width: 100%;
@@ -78,13 +82,13 @@
  
  #navigationLeft{
 	float: left;
-	width: 75%;
+	width: 65%;
 	margin-left: 5%;
  }
  
  #navigationRight{
 	float: right;
-	width: 20%;
+	width: 30%;
  }
  
  #bannerDashboard{
@@ -174,6 +178,7 @@
 	color: #333333;
 	font-weight: bold;
 	font-family: cursive;
+	overflow-wrap: break-word;
 }
 
 .link{
@@ -267,7 +272,17 @@
 .vehicleImage{
 	float: left;
 	border-radius: 15px;
-	margin-right: 10px;
+	display: block;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.vehicleImageMain{
+	border-radius: 15px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .mainContainer{
@@ -277,7 +292,20 @@
 	background: #ffffff;
 	color: #333333;
 	opacity: 0.9;
-	
+	display: block;
+	border-radius: 90px 0px 90px 0px; 
+	margin-top: 2.5%;
+	margin-right: 2%;
+	margin-left: 2%;
+}
+
+.mainContainerNoOpacity{
+	width: 90%;
+	padding: 3%;
+	overflow: hidden;
+	background: #ffffff;
+	color: #333333;
+	display: block;
 	border-radius: 90px 0px 90px 0px; 
 	margin-top: 2.5%;
 	margin-right: 2%;
@@ -315,6 +343,7 @@
 	text-shadow: 3px 3px 3px #333333;
 	box-shadow: 3px 3px 3px #333333;
 	float: left;
+	display: block;
 }
 
 .userMenuBtn:hover{
@@ -324,7 +353,7 @@
 }
 
 .userMenu{
-	width: 38%;
+	width: 48%;
 	float: left;
 	padding: 3%;
 	background: #ff0000;
@@ -336,6 +365,7 @@
 	margin-top: 0;
 	margin-right: 2%;
 	margin-left: 2%;
+	display: block;
 }
 
 .userContentArea{
@@ -348,6 +378,7 @@
 	border-radius: 5px 20px 5px;
 	height: auto;
 	margin-top: 1%;
+	display: block;
 }
 
 .userContentAreaFull{
@@ -396,6 +427,7 @@
 
 .halfContainerUserBoxRight h1{
 	color: #ff0000;
+	overflow-wrap: break-word;
 }
 
 .clearfix{
@@ -404,10 +436,12 @@
 
 .pull-left{
 	float: left;
+	display: block;
 }
 
 .pull-right{
 	float: right;
+	display: block;
 }
 
 .vehicleMoney{
@@ -454,14 +488,29 @@
 }
 
 .vechiclemarketBox{
-	width: 30%;
+	width: 29%;
 	float: left;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	padding: 5px 0;
 }
 
 .vechiclemarketBoxDetails{
 	margin-bottom: 0;
 	padding-bottom: 1px;
+	border-bottom: 5px dotted #333333;	
+}
+
+.vechiclemarketBoxDetails:hover{
+	margin-bottom: 0;
+	padding-bottom: 1px;
 	border-bottom: 5px dotted #ff0000;	
+}
+
+.vechiclemarketBoxDetails > a{
+	display: block;
+	width: 100%;
+	height: 130px;
 }
 
 .vehicleStatusPending{
@@ -510,18 +559,28 @@
 }
 
 .vehicleImageMultipleBox{
-	width: 350px;
-	height: 200px;
+	/*width: 100%;
+	height: 350px;
 	overflow: auto;
 	white-space: nowrap;
-	margin-top: 30px;
+	margin-top: 30px;*/
 }
 
 .vehicleImageMultipleBox figure{
 	float: left;
 	margin: 0px;
 	padding-bottom: 3%;
-	width: 53.33%;
+	width: auto;
+	margin-left: 20px;
+}
+
+.vehicleImageMultipleBox figure img{
+	border-radius: 15px;
+    display: block;
+    width: 250px;
+    height: 250px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .vehicleStatusAvailable{
@@ -547,12 +606,12 @@
 }
 
 .vehicleStatusOnSale{
-	color: #ff0000;
-	background-color: #ffff00;
+	color: #ffffff;
+	background-color: #ff0000;
 	border-radius: 50%;
 	padding: 1%;
 	font-weight: 600;
-	border: 3px outset #ffff00;
+	border: 3px outset #00ff00;
 	text-shadow: none;
 }
 
@@ -737,6 +796,7 @@ h1{
 blink {
   -webkit-animation: 2s linear infinite condemned_blink_effect; 
   animation: 2s linear infinite condemned_blink_effect;
+  overflow-wrap: break-word;
 }
 
 /** TAGS END **/

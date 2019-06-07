@@ -21,6 +21,7 @@ const signupApiCall = (email,first_name,last_name,password,address) => {
 				
 				console.log(dataObj);
 				storeToken(dataObj.token);
+				storeUserData(dataObj.id,dataObj.email,dataObj.first_name,dataObj.last_name,dataObj.address,dataObj.is_admin);
 				window.location = "purchase-orders.html"; // registration success, so redirect to dashboard page.
 			}
 			
@@ -33,7 +34,7 @@ const signupApiCall = (email,first_name,last_name,password,address) => {
 	};
 	xhttp.open("POST", apiSignup, true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	let parameters = "email=" + email + "&first_name=" + first_name + "&last_name=" + last_name + "&password=" + password + "&address=" + address;
+	let parameters = `email=${email}&first_name=${first_name}&last_name=${last_name}&password=${password}&address=${address}`;
 	xhttp.send(parameters);
 }
 

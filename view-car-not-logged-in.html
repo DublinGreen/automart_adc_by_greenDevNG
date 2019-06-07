@@ -17,7 +17,7 @@
 			<img src="assets/img/giphy.gif" alt="loading" />
 		</section>
 		<head>
-			<nav id="navigation" w3-include-html="segments/user-nav.html"></nav>
+			<nav id="navigation" w3-include-html="segments/nav.html"></nav>
 		</head>
 		
 		
@@ -34,35 +34,26 @@
 				<section class="dashboardPurchaseOrderBoxFull" >
 					
 					<figure class="purchaseOrderVehicleDashboard">
-						<article>
-							<a class="btn-danger" href="view-all-car-posts.html">&laquo; Back</a>
-							<img  id="mainImage" class="vehicleImageMain"  src='https://via.placeholder.com/350' alt='image' title='image'/>	
+						<article class="pull-left">
+							<img class="vehicleImage" src="assets/img/demoCars/6.jpg"  alt="vehicle image" title="vehicle image"/>
 							
-							<section class="clearfix"></section><br>
+							<section class="clearfix"></section>
 							<section class="vehicleImageMultipleBox">
 								<figure>
-									<img  id="mainImage2" src='https://via.placeholder.com/250' alt='image' title='image'/>	
+									<img src="assets/img/demoCars/6.jpg"  alt="vehicle image" title="vehicle image"/>
 								</figure>
 								
 								<figure>
-									<img id="mainImage3" src='https://via.placeholder.com/250' alt='image' title='image'/>	
-								</figure>
-								
-								<figure>
-									<img id="mainImage4" src='https://via.placeholder.com/250' alt='image' title='image'/>	
-								</figure>
-								
-								<figure>
-									<img id="mainImage5" src='https://via.placeholder.com/250' alt='image' title='image'/>	
+									<img src="assets/img/demoCars/6.jpg"  alt="vehicle image" title="vehicle image"/>
 								</figure>
 								
 							</section>
 						</article>
 
-						<section class="clearfix"></section><br>
-						<article>
+					
+						<article class="pull-right">
 							<p class="text-instruction" id="carDescription">
-								
+								<strong>BMW 8 series,</strong> first body, automatic, very good engine. Just buy and drive. Thank me later.
 							</p><hr>
 							
 							 <h3 class="viewVehicleMoney2">Asking Price :  <span id="carPrice">&nbsp;</span></h3>							
@@ -70,7 +61,7 @@
 								<tbody>
 									<tr>
 										<th class="tableSubject">Vehicle Status</th>
-										<td class="tableValue"><span id="vechicleStatus" class="vehicleStatusAvailableSmall">Available</span></td>
+										<td class="tableValue"><span class="vehicleStatusAvailableSmall">Available</span></td>
 									</tr>
 									<tr>
 										<th class="tableSubject">State of Vechicle</th>
@@ -91,13 +82,13 @@
 								</tbody>
 							</table>
 							<br>
-							<a class="btn-success" href="edit-car-sale-advert.html" id="editCarAdvertLink">Edit Car Advert Info</a>
 							<section class="clearfix"></section>
 						</article>
 						
 						<section class="clearfix"></section><br><br>
 						
 						<h1 class="vehicleInforHeader text-center">Seller Information</h1>
+						<p class="text-instruction text-center">Login or create an account to get seller's information</p>
 						<p class="read"><strong>Name: </strong> <span id="userName">&nbsp;</span></p>
 						<p class="read"><strong>Email: </strong><a id="userMail" href="mailto:greendublin007@gmail.com"> <span id="userEmail">&nbsp;</span></a></p>
 						<p class="read"><strong>Address: </strong> <span id="userAddress">&nbsp;</span></p>
@@ -105,12 +96,12 @@
 						<section class="clearfix"></section>
 						
 						<section class="full-page" id="carActionForms">
-							<form action="purchase-orders.html" method="post"  id="confirmAcceptOrder">
+							<form action="login.html" method="post"  id="confirmAcceptOrder">
 								<input type="hidden" name="purchase_order_token" value="10109191" />
 								<button class="btn-success" type="submit">Make a Purchase Order</button>
 							</form>
 							
-							<form action="view-purchase-order.html" method="post"  id="confirmRejectOrder">
+							<form action="login.html" method="post"  id="confirmRejectOrder">
 								<input type="hidden" name="purchase_order_token" value="10109191" />
 								<button class="btn-danger" type="submit">Flag Advert</button>
 							</form>
@@ -129,6 +120,6 @@
 		<footer id="footerBoxDashboard" w3-include-html="segments/footer.html"></footer>
 		<script src="assets/js/apiConfig.js"></script>
 		<script src="assets/js/main.js"></script>
-		<script src="assets/js/viewCar.js"></script>
+		<script src="assets/js/viewCarNotLoggedIn.js"></script>
 	</body>
 </html>

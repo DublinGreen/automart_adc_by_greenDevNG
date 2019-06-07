@@ -25,40 +25,27 @@
 			<nav class="userMenu" w3-include-html="segments/user-secondary-menu.html"></nav>
 			
 			<section class="userContentArea">
-				<form autocomplete="on" id="postCarAdvert" name="post_car_advert" action="post-car-sale-advert.html" method="post" enctype="multipart/form-data">
-					<h1>Post Car Sale Advert</h1><hr>
+				<form action="" method="post" name="userEditProfile">
+					<h1>Edit Profile <span id="userType"></span></h1><hr>
 					<section id="alert">
 						<button type="button" id="closeAlert">X</button>
 						<section class="clearfix"></section>
 						<p id ="alertContent">&nbsp;</p>
-					</section><br>					
+					</section><br>
+					
 					<section class="inputGroup">
-						<select class="inputSelect" name="vechicle_state" required>
-							<option value=""> State of Vechicle</option>
-							<option value="NEW" name="NEW" > New</option>
-							<option value="USED" name="USED"> Used</option>
-						</select>
+						<input id="email" class="input" type="email" name="email" required  placeholder="Email*" title="Your Email Here"/>
 					</section>
 					<section class="inputGroup">
-						  <input class="input"  type="number" name="vechicle_price" min="1" max="500000000" placeholder="Vechicle Price *" required >
+						<input id="first_name" class="input" type="text" name="first_name" required  placeholder="First Name*" title="Your First Name Here"/>
 					</section>
 					<section class="inputGroup">
-						  <input class="input" type="text" name="vechicle_manufacturer" placeholder="Vechicle Manufacturer*"  required/>
+						<input id="last_name" class="input" type="text" name="last_name" required  placeholder="Last Name*" title="Your Last Name Here"/>
 					</section>
 					<section class="inputGroup">
-						  <input class="input" type="text" name="vechicle_model" placeholder="Vechicle Model*"  required/>
+						<textarea id="address" class="inputTextArea" name="address" placeholder="Address"></textarea>
 					</section>
-					<section class="inputGroup">
-						  <input class="input" type="text" name="vechicle_body_type" placeholder="Vechicle Body Type*"  required/>
-					</section>
-					<section class="inputGroup">
-						<textarea class="inputTextArea" name="description" spellcheck="true" placeholder="Description about the vehicle" required></textarea>
-					</section>
-					<section class="inputGroup">
-						  <p class="text-muted">Max of 5 pictures</p>
-						  <input type="file" name="files" multiple required> 
-					</section>
-					<button class="btn" type="submit">Post Car Sale Advert</button>
+					<button class="btn" type="submit">Edit Profile</button>
 				</form>	
 			</section>
 		</section>

@@ -10,7 +10,6 @@
 		
 		<link rel="icon" type="image/x-icon" href="favicon.png" />		
 		<link rel="stylesheet" href="assets/css/main.css">
-		<script src="assets/js/apiConfig.js"></script>
 	</head>
 	
 	<body id="bannerDashboard">
@@ -27,6 +26,12 @@
 				
 			<section class="userContentArea">
 				<h1 class="text-center">Purchase Order <em class="badgeAlt">2</em></h1><hr>
+				
+				<section id="alert">
+					<button type="button" id="closeAlert">X</button>
+					<section class="clearfix"></section>
+					<p id ="alertContent">&nbsp;</p>
+				</section><br>
 				<p class="text-instruction">Purchase order are request from prospective buyers. Please respond promptly please.</p><hr>
 				
 				<section class="dashboardPurchaseOrderBox" >
@@ -73,6 +78,7 @@
 		
 		<section class="clearfix"></section>
 		<footer id="footerBoxDashboard" w3-include-html="segments/footer.html"></footer>
+		<script src="assets/js/apiConfig.js"></script>
 		<script src="assets/js/main.js"></script>
 	</body>
 </html>
