@@ -237,7 +237,8 @@ const getUserCarsCountUnsold = () => {
 		};
 		xhttp.open("POST", apiAllUserCars, true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		let parameters = `token=${token}&id=${id}`;
+		xhttp.setRequestHeader("token", token);
+		let parameters = `id=${id}`;
 		xhttp.send(parameters);
 	}
 
@@ -285,7 +286,8 @@ const getUserCarsCountSold = () => {
 		};
 		xhttp.open("POST", apiAllUserCarsSold, true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		let parameters = `token=${token}&id=${id}`;
+		xhttp.setRequestHeader("token", token);
+		let parameters = `id=${id}`;
 		xhttp.send(parameters);
 	}
 }
@@ -328,14 +330,14 @@ const getAllCarsCount = () => {
 				
 				if(statusObj == 400){
 					loading.style.display = "none";
-					totalAutoMartCount.innerHTML = 0;
+					//totalAutoMartCount.innerHTML = 0;
 				}			
 			}
 		};
 		xhttp.open("POST", apiAllCars, true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		let parameters = `token=${token}`;
-		xhttp.send(parameters);
+		xhttp.setRequestHeader("token", token);
+		xhttp.send();
 	}
 }
 

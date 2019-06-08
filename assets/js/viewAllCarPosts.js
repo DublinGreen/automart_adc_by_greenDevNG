@@ -118,8 +118,8 @@ let getAllCars = () => {
 		};
 		xhttp.open("POST", apiAllCars, true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		let parameters = `token=${token}`;
-		xhttp.send(parameters);
+		xhttp.setRequestHeader("token", token);
+		xhttp.send();
 	}else{
 		logoutUser();
 	}

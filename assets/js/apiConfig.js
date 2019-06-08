@@ -1,11 +1,12 @@
 // USED FOR COMMON OR SHARED JS RESOURCE
 
-//const apiUrl = "http://18.202.215.147:3000/api/v1/";
-const apiUrl = "http://localhost:4333/api/v1/";
+//const apiUrl = "http://18.202.215.147:3333/api/v1/";
+//const apiUrl = "http://localhost:3333/api/v1/";
+const apiUrl = "https://shrouded-springs-77611.herokuapp.com/api/v1/";
+
 
 const apiLogin = apiUrl.concat("auth/signin");
 const apiSignup = apiUrl.concat("auth/signup");
-
 
 const apiValidateToken = apiUrl.concat("token/validate");
 const apiConfirmLogin = apiUrl.concat("token/validateLogin/");//get parameter token needed
@@ -87,7 +88,7 @@ const loginUserConfirm = () => {
 				}			
 			}
 		};
-		
+				
 		xhttp.open("GET", `${apiConfirmLogin}${token}`, true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhttp.send();
@@ -126,8 +127,8 @@ const validateToken = () => {
 				
 		xhttp.open("POST", apiValidateToken, true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		let parameters = `token=${token}`;
-		xhttp.send(parameters);
+		xhttp.setRequestHeader("token", token);
+		xhttp.send();
 	}else{
 		logoutUser();
 	}

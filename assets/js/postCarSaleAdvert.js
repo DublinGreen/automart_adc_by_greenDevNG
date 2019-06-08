@@ -9,7 +9,9 @@ try{
 	alertSection.style.display = "none";
 	alertSection.style.height = "0px";
 	
-	document.post_car_advert.onsubmit = function(){		
+	document.post_car_advert.addEventListener('submit', async e => {
+		e.preventDefault();
+	
 		let owner = getUserID();
 		let created_on = getCurrentDateForJson();
 		let status = CAR_CREATE_STATUS_DEFAULT_AVAILABLE; // NOT CHANGE THIS, from apiConfig.js
@@ -82,7 +84,6 @@ try{
 			formData.append('status', status);
 			formData.append('body_type', body_type);
 			formData.append('description', description);
-			formData.append('token', token);
 			formData.append('image', file);
 			formData.append('image', file2);
 			formData.append('image', file3);
@@ -125,11 +126,11 @@ try{
 			};	
 			
 			xhttp.open("POST", apiCarAdvertCreate, true);
+			xhttp.setRequestHeader("token", token);
 			xhttp.send(formData);	
 		}
-		
-			return false; // i don't need the form to submit to any action page
-		};
+				
+	});				
 		
 	closeAlertButton.addEventListener("click", closeAlertButtonHandler);//closeAlert handler
 }catch(err) {

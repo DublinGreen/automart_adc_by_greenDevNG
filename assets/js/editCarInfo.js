@@ -55,7 +55,8 @@ let getCarInfo = (id) => {
 		};
 		xhttp.open("POST", apiCarInfo, true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		let parameters = `token=${token}&id=${id}`;
+		xhttp.setRequestHeader("token", token);
+		let parameters = `id=${id}`;
 		xhttp.send(parameters);
 	}else{
 		logoutUser();
@@ -92,7 +93,8 @@ const editCarApiCall = (vechicle_status,vechicle_state,vechicle_manufacturer,vec
 	};
 	xhttp.open("POST", apiCarEdit, true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");	
-	let parameters = `status=${vechicle_status}&manufacturer=${vechicle_manufacturer}&model=${vechicle_model}&price=${vechicle_price}&state=${vechicle_state}&body_type=${vechicle_body_type}&description=${description}&id=${urlID}&token=${token}`;
+	xhttp.setRequestHeader("token", token);
+	let parameters = `status=${vechicle_status}&manufacturer=${vechicle_manufacturer}&model=${vechicle_model}&price=${vechicle_price}&state=${vechicle_state}&body_type=${vechicle_body_type}&description=${description}&id=${urlID}`;
 	xhttp.send(parameters);
 }
 
@@ -119,7 +121,9 @@ try{
 	const urlID = tempUrlID; // don't want this to change
 		
 	try{
-		form.onsubmit = function(){					
+		form.addEventListener('submit', async e => {
+			e.preventDefault();
+			
 			let answer = confirm("Are you sure you want to edit your advert car info?");						
 			if(answer == true){
 				if(token != null){						
@@ -141,8 +145,7 @@ try{
 					editCarApiCall(vechicle_status,vechicle_state,vechicle_manufacturer,vechicle_price,vechicle_model,vechicle_body_type, description,token,urlID);		
 				}
 			}						
-			return false; // i don't need the form to submit to any action page
-		}						
+		});				
 	}catch(err) {
 		console.log("Problems with editCarInfo (name) form submission", err);
 	}

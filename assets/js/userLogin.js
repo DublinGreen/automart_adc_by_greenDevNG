@@ -44,7 +44,10 @@ try{
 	//check if already logged in
 	redirectToDashboardAlreadyLogin();	
 	
-	document.userLoginForm.onsubmit = function(){		
+	
+	document.userLoginForm.addEventListener('submit', async e => {
+		e.preventDefault();
+		
 		let email = document.userLoginForm.email.value;
 		let password = document.userLoginForm.password.value;
 		
@@ -53,9 +56,8 @@ try{
 		
 		loading.style.display = "block";
 		loginApiCall(email,password);			
-		return false; // i don't need the form to submit to any action page
-	};
-		
+	});
+			
 	closeAlertButton.addEventListener("click", closeAlertButtonHandler);//closeAlert handler
 }catch(err) {
 	console.log("userLogin.js operations error : " , err);

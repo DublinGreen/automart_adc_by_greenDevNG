@@ -56,7 +56,7 @@ let getUserInfo = (id) => {
 					userMail.href = `mailto: ${userInfo.email}`;
 										
 				
-									if(carInfo.status.toUpperCase() == "SOLD"){
+					if(carInfo.status.toUpperCase() == "SOLD"){
 						vechicleStatus.setAttribute("class","vehicleStatusOnSale");
 						vechicleStatus.innerHTML = `<blink>${carInfo.status.toUpperCase()}</blink>`;
 					}else{
@@ -92,7 +92,8 @@ let getUserInfo = (id) => {
 		};
 		xhttp.open("POST", apiUserInfo, true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		let parameters = `token=${token}&id=${id}`;
+		xhttp.setRequestHeader("token", token);
+		let parameters = `id=${id}`;
 		xhttp.send(parameters);
 	}else{
 		logoutUser();
@@ -180,7 +181,8 @@ let getCarInfo = (id) => {
 		};
 		xhttp.open("POST", apiCarInfo, true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		let parameters = `token=${token}&id=${id}`;
+		xhttp.setRequestHeader("token", token);
+		let parameters = `id=${id}`;
 		xhttp.send(parameters);
 	}else{
 		logoutUser();

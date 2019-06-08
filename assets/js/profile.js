@@ -54,7 +54,8 @@ let getUserInfo = (id) => {
 		};
 		xhttp.open("POST", apiUserInfo, true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		let parameters = `token=${token}&id=${id}`;
+		xhttp.setRequestHeader("token", token);
+		let parameters = `id=${id}`;
 		xhttp.send(parameters);
 	}else{
 		logoutUser();
@@ -91,7 +92,8 @@ const editUserApiCall = (email,first_name,last_name,address,token,id) => {
 	};
 	xhttp.open("POST", apiUserEdit, true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	let parameters = `email=${email}&first_name=${first_name}&last_name=${last_name}&address=${address}&id=${id}&token=${token}`;
+	xhttp.setRequestHeader("token", token);
+	let parameters = `email=${email}&first_name=${first_name}&last_name=${last_name}&address=${address}&id=${id}`;
 	xhttp.send(parameters);
 }
 
@@ -106,15 +108,17 @@ try{
 	getUserInfo(id);
 		
 	try{
-		form.onsubmit = function(){					
+		
+		form.addEventListener('submit', async e => {
+			e.preventDefault();
+
 			let answer = confirm("Are you sure you want to edit your profile?");						
 			if(answer == true){
 				if(token != null){
 					editUserApiCall(email.value,first_name.value,last_name.value,address.value,token,id);		
 				}
 			}						
-			return false; // i don't need the form to submit to any action page
-		}						
+		});					
 	}catch(err) {
 		console.log("Problems with userEditProfile (name) form submission", err);
 	}

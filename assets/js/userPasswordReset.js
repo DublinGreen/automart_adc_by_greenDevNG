@@ -61,7 +61,9 @@ try{
 		document.passwordReset.action = justPageNameWithExtension;
 	}	
 	
-	document.passwordReset.onsubmit = function(){		
+	document.passwordReset.addEventListener('submit', async e => {
+		e.preventDefault();
+		
 		let password = document.passwordReset.password.value;
 		document.passwordReset.password.value = password;
 		
@@ -84,10 +86,9 @@ try{
 			loading.style.display = "block";
 			passwordReset(password,id,passwordResetToken, resetToken);						
 		}
+				
+	});		
 
-		return false; // i don't need the form to submit to any action page
-	};
-		
 	closeAlertButton.addEventListener("click", closeAlertButtonHandler);//closeAlert handler
 }catch(err) {
 	console.log("userPasswordReset.js operations error : " , err);

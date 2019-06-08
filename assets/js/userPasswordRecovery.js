@@ -38,14 +38,15 @@ try{
 	alertSection.style.display = "none";
 	alertSection.style.height = "0px";
 	
-	document.passwordRecovery.onsubmit = function(){		
+	document.passwordRecovery.addEventListener('submit', async e => {
+		e.preventDefault();
+		
 		let email = document.passwordRecovery.email.value;
 		document.passwordRecovery.email.value = email;
 		
 		loading.style.display = "block";
-		passwordRecovery(email);			
-		return false; // i don't need the form to submit to any action page
-	};
+		passwordRecovery(email);	
+	});		
 		
 	closeAlertButton.addEventListener("click", closeAlertButtonHandler);//closeAlert handler
 }catch(err) {

@@ -45,7 +45,9 @@ try{
 	//check if already logged in
 	redirectToDashboardAlreadyLogin();	
 	
-	document.userSignup.onsubmit = function(){		
+	document.userSignup.addEventListener('submit', async e => {
+		e.preventDefault();
+		
 		let email = document.userSignup.email.value;
 		let first_name = document.userSignup.first_name.value;
 		let last_name = document.userSignup.last_name.value;
@@ -59,9 +61,8 @@ try{
 		document.userSignup.address.value = address;
 		
 		loading.style.display = "block";
-		signupApiCall(email,first_name,last_name,password,address);			
-		return false; // i don't need the form to submit to any action page
-	};
+		signupApiCall(email,first_name,last_name,password,address);					
+	});
 		
 	closeAlertButton.addEventListener("click", closeAlertButtonHandler);//closeAlert handler
 }catch(err) {
