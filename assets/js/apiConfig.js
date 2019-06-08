@@ -118,9 +118,10 @@ const validateToken = () => {
 				}
 				
 				if(statusObj == 400){
-					sessionStorage.clear();
-					localStorage.clear();
-					logoutUser();
+					//sessionStorage.clear();
+					//localStorage.clear();
+					console.log("Cannot validate token, somethime is very wrong");
+					//logoutUser();
 				}			
 			}
 		};
