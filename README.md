@@ -3,3 +3,5 @@ Auto Mart is an online marketplace for automobiles of diverse makes, model or bo
 
 
 [![Build Status](https://travis-ci.org/DublinGreen/automart_adc_by_greenDevNG.svg?branch=apiv1)](https://travis-ci.org/DublinGreen/automart_adc_by_greenDevNG)
+
+[![Build Status](https://travis-ci.com/DublinGreen/automart_adc_by_greenDevNG.svg?branch=apiv1)](https://travis-ci.com/DublinGreen/automart_adc_by_greenDevNG)
