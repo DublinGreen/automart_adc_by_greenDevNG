@@ -1,17 +1,1 @@
-{
-   {
-      "id" : Integer,
-      "car_id" : Integer,
-      "created_on" : DateTime,
-      "reason": String,
-      "description": String
-   },
-   
-   {
-      "id" : Integer,
-      "car_id" : Integer,
-      "created_on" : DateTime,
-      "reason": String,
-      "description": String
-   }
-}
+[{"id":1,"car_id":"3","created_on":"2019-6-12","reason":"WEIRD_DEMANDS","description":"nice"},{"id":2,"car_id":"3","created_on":"2019-6-12","reason":"WEIRD_DEMANDS","description":"all good"},{"id":3,"car_id":"3","created_on":"2019-6-12","reason":"PRICING","description":"hello"}]

@@ -39,9 +39,6 @@ APP.use(BODYPARSER.json({limit: "50mb"}));
 APP.use(BODYPARSER.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 
 const HELPER = require('./helper');
-FS.readFileSync('helper.js');
-FS.readFileSync('token.js');
-FS.readFileSync('user.js');
 
 const HTTP_CODE_OK = 200; // REQUEST FULFILLED
 const HTTP_CODE_ACCEPTED = 202; // REQUEST ACCEPTED BUT NOT COMPLETED
@@ -52,12 +49,23 @@ const HTTP_CODE_NOT_FOUND = 404;
 const HTTP_CODE_INTERNAL_SERVER_ERROR = 500;
 								
 APP.use('/', ROUTER);
-APP.listen(process.env.port || 4333);
+APP.listen(process.env.port || 3333);
+
+//const PORT = process.env.PORT || 3000;
+//APP.listen(PORT, () => {
+//    console.log(`Our app is running on port ${ PORT }`);
+//});
+//APP.listen(process.env.port || 3333);
 
 APP.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Credentials", "true");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    //res.header("Access-Control-Allow-Origin", "*");
+    //res.header("Access-Control-Allow-Credentials", "true");
+	//res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,token");
+	
+	res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,token");
 
     if (req.method === "OPTIONS") {
         return res.status(200).end();
@@ -66,94 +74,16 @@ APP.use(function(req, res, next) {
     return next();	
 });
 
-APP.post('api/v1/token/:email', function(req, res){
-	let email = req.body.email;
-	
-	   FS.readFile('./db/users.json', 'utf8', function (err,data) {
-		data = JSON.parse(data); 
-		
-		for(let item of data) {
-			if(item.email == email){
-				
-				let token = JWT.sign({username: email}, HELPER.getTokenSecret(),{expiresIn: HELPER.getTokenExpire()}); 
-				res.send(token);
-				
-				let returnData = {
-					"status" : 200,
-					"data" : {
-						"token" : token,
-						"expires" : 86400
-					}
-				}
-				res.send(returnData);
-			}else{
-				let returnData = {
-					"status" : 200,
-					"data" : {
-						"token" : token,
-						"expires" : 86400
-					}
-				}
-				res.send(returnData);
-			}
-		}
-	});
-})
+//don't show the log when it is test
+if(config.util.getEnv('NODE_ENV') !== 'test') {
+    //use morgan to log at command line
+    app.use(morgan('combined')); //'combined' outputs the Apache style LOGs
+}
 
-APP.post('/api/v1/token/validate', function(req, res){
-  let token = req.body.token;
-    
-  JWT.verify(token, HELPER.getTokenSecret(), function(err, decoded){
-    if(!err){
-      let returnData = {
-		  "status" : HTTP_CODE_OK ,
-		  "data" : {
-				"tokenStatus" : "valid",
-				"token" : token
-				}
-		  };
-      res.send(returnData);
-    } else {
-		let returnData = {
-			  "status" : HTTP_CODE_BAD_REQUEST ,
-			  "data" : {
-					"tokenStatus" : "invalid",
-					"error" :   `${err.name}  (${err.message})`
-				}
-			};
-		  res.send(returnData);
-    }
-  })
-})
-
-APP.get('/api/v1/token/validateLogin/:token', function(req, res){
-  let token = req.params.token;
-    
-  JWT.verify(token, HELPER.getTokenSecret(), function(err, decoded){
-    if(!err){
-      let returnData = {
-		  "status" : HTTP_CODE_OK ,
-		  "data" : {
-				"tokenStatus" : "valid",
-				"token" : token
-				}
-		  };
-      res.send(returnData);
-    } else {
-			let returnData = {
-			  "status" : HTTP_CODE_BAD_REQUEST ,
-			  "data" : {
-					"tokenStatus" : "invalid",
-					"error" :   `${err.name} (${err.message})`
-				}
-			};
-		  res.send(returnData);
-    }
-  })
-})
+process.env.NODE_ENV = 'test';
 
 APP.post('/api/v1/auth/signin', function (req, res) {
-let email = req.body.email;
+	let email = req.body.email;
 	let password = req.body.password;
 	
 	FS.readFile('./db/users.json', 'utf8', function (err,data) {
@@ -202,106 +132,6 @@ let email = req.body.email;
 		}
 	
 	});
-})
-
-APP.post('/api/v1/user/password/recovery', function (req, res) {
-	let email = req.body.email;
-	let hashToken;
-	let secretTokenKey;
-	
-	FS.readFile('./db/users.json', 'utf8', function (err,data) {
-		data = JSON.parse(data); 
-		
-		let user;		  		
-		let userExists = false;
-		//loop throught users data
-		for(let item of data) {
-			//user email exists,
-			if(item.email == email){
-				user = item;
-				secretTokenKey = parseInt(item.id) * HELPER.getPasswordResetSecret(); 
-				hashToken = `${item.first_name}${secretTokenKey}${item.last_name}`; 
-				userExists = true;
-			}
-			
-			if (userExists) break;
-		}
-		
-		// if true user exists with that email and password combination
-		if(userExists){
-			
-			let returnData = {
-				"status" : HTTP_CODE_OK,
-				"data" : {
-					"email" : user.email,
-					"reset_token" : secretTokenKey,
-					"password_reset_token" : hashToken,
-					"password_reset_page" : `passwordreset.html?passwordResetToken=${hashToken}&id=${user.id}&resetToken=${secretTokenKey}`
-				}
-			}				
-			res.send(returnData);			
-		}else{
-			let returnData = {
-				"status" : HTTP_CODE_BAD_REQUEST,
-				"data" : {
-					"error" : `No user has registered with that email : ${email}`
-				}
-			}
-			res.send(returnData);			
-		}
-	
-	});
-})
-
-APP.post('/api/v1/user/password/reset', function (req, res) {
-	let password = req.body.password;
-	let id = req.body.id;	
-	let resetToken = req.body.resetToken;	
-	let passwordResetToken = req.body.passwordResetToken;	
-	let secretTokenKeyCheck;
-	let passwordResetTokenCheck;
-				
-	FS.readFile('./db/users.json', 'utf8', function (err,data) {
-		data = JSON.parse(data); 
-		let userExists = false;
-		let compare =  false;
-		
-		//loop throught users data
-		for(let item of data) {			
-			//user email exists, check if password match
-			if(item.id == id){
-				secretTokenKeyCheck = parseInt(item.id) * HELPER.getPasswordResetSecret(); 
-				passwordResetTokenCheck = `${item.first_name}${secretTokenKeyCheck}${item.last_name}`;
-				userExists = true;
-				// setting the new password
-				data[item.id - 1].password = HELPER.newHashPassword(password); // the - 1 is because array are 0 based
-			}
-		}
-				
-		if(userExists && resetToken == secretTokenKeyCheck && passwordResetTokenCheck == passwordResetToken){
-			FS.writeFile("./db/users.json",JSON.stringify(data), function (err,data){
-			  if(err){throw err;} 
-			});
-			
-			let returnData = {
-				"status" : HTTP_CODE_OK,
-				"data" : {
-					"id" : id,
-					"message" : "Password reset success"
-				}
-			}				
-			res.send(returnData);						
-		}else{
-			let returnData = {
-				"status" : HTTP_CODE_BAD_REQUEST,
-				"data" : {
-					"error" : "Unable to reset password, User id doesn't exist"
-				}
-			}
-			res.send(returnData);			
-		}
-	
-	});	
 })
 
 APP.post('/api/v1/auth/signup', function (req, res) {
@@ -381,12 +211,167 @@ APP.post('/api/v1/auth/signup', function (req, res) {
 	});
 })
 
+// RAML READY
+APP.post('/api/v1/token/validate', function(req, res){
+	let token = req.headers.token;
+
+	JWT.verify(token, HELPER.getTokenSecret(), function(err, decoded){
+		if(!err){
+		  let returnData = {
+			  "status" : HTTP_CODE_OK ,
+			  "data" : {
+					"tokenStatus" : "valid",
+					"token" : token
+					}
+			  };
+		  res.send(returnData);
+		} else {
+			let returnData = {
+				  "status" : HTTP_CODE_BAD_REQUEST ,
+				  "data" : {
+						"tokenStatus" : "invalid",
+						"error" :   `${err.name}  (${err.message})`
+					}
+				};
+			  res.send(returnData);
+		}
+	})
+})
+
+// RAML READY
+APP.get('/api/v1/token/validate', function(req, res){
+  let token = req.query.token; 
+    
+  JWT.verify(token, HELPER.getTokenSecret(), function(err, decoded){
+    if(!err){
+      let returnData = {
+		  "status" : HTTP_CODE_OK ,
+		  "data" : {
+				"tokenStatus" : "valid",
+				"token" : token
+				}
+		  };
+      res.send(returnData);
+    } else {
+			let returnData = {
+			  "status" : HTTP_CODE_BAD_REQUEST ,
+			  "data" : {
+					"tokenStatus" : "invalid",
+					"error" :   `${err.name} (${err.message})`
+				}
+			};
+		  res.send(returnData);
+    }
+  })
+})
+
+// RAML READY
+APP.post('/api/v1/user/password/recovery', function (req, res) {
+	let email = req.body.email;
+	let hashToken;
+	let secretTokenKey;
+	
+	FS.readFile('./db/users.json', 'utf8', function (err,data) {
+		data = JSON.parse(data); 
+		
+		let user;		  		
+		let userExists = false;
+		//loop throught users data
+		for(let item of data) {
+			//user email exists,
+			if(item.email == email){
+				user = item;
+				secretTokenKey = parseInt(item.id) * HELPER.getPasswordResetSecret(); 
+				hashToken = `${item.first_name}${secretTokenKey}${item.last_name}`; 
+				userExists = true;
+			}
+			
+			if (userExists) break;
+		}
+		
+		// if true user exists with that email and password combination
+		if(userExists){
+			
+			let returnData = {
+				"status" : HTTP_CODE_OK,
+				"data" : {
+					"email" : user.email,
+					"reset_token" : secretTokenKey,
+					"password_reset_token" : hashToken,
+					"password_reset_page" : `passwordreset.html?passwordResetToken=${hashToken}&id=${user.id}&resetToken=${secretTokenKey}`
+				}
+			}				
+			res.send(returnData);			
+		}else{
+			let returnData = {
+				"status" : HTTP_CODE_NO_CONTENT,
+				"data" : {
+					"error" : `No user has registered with that email : ${email}`
+				}
+			}
+			res.send(returnData);			
+		}
+	
+	});
+})
+
+APP.post('/api/v1/user/password/reset', function (req, res) {
+	let password = req.body.password;
+	let id = req.body.id;	
+	let resetToken = req.body.resetToken;	
+	let passwordResetToken = req.body.passwordResetToken;	
+	let secretTokenKeyCheck;
+	let passwordResetTokenCheck;
+				
+	FS.readFile('./db/users.json', 'utf8', function (err,data) {
+		data = JSON.parse(data); 
+		let userExists = false;
+		let compare =  false;
+		
+		//loop throught users data
+		for(let item of data) {			
+			//user email exists, check if password match
+			if(item.id == id){
+				secretTokenKeyCheck = parseInt(item.id) * HELPER.getPasswordResetSecret(); 
+				passwordResetTokenCheck = `${item.first_name}${secretTokenKeyCheck}${item.last_name}`;
+				userExists = true;
+				// setting the new password
+				data[item.id - 1].password = HELPER.newHashPassword(password); // the - 1 is because array are 0 based
+			}
+		}
+				
+		if(userExists && resetToken == secretTokenKeyCheck && passwordResetTokenCheck == passwordResetToken){
+			FS.writeFile("./db/users.json",JSON.stringify(data), function (err,data){
+			  if(err){throw err;} 
+			});
+			
+			let returnData = {
+				"status" : HTTP_CODE_OK,
+				"data" : {
+					"id" : id,
+					"message" : "Password reset success"
+				}
+			}				
+			res.send(returnData);						
+		}else{
+			let returnData = {
+				"status" : HTTP_CODE_BAD_REQUEST,
+				"data" : {
+					"error" : "Unable to reset password, User id doesn't exist"
+				}
+			}
+			res.send(returnData);			
+		}
+	
+	});	
+})
+
 APP.post('/api/v1/user/info', function (req, res) {   
 	let id = req.body.id;
-	let token = req.body.token;
+	let token = req.headers.token;
 	let idDB = id - 1; // zero based used to fetch records from the user.json file
 	
-	if(token == null){
+	if(token == null || token == "undefined"){
 		let returnData = {
 			  "status" : HTTP_CODE_BAD_REQUEST ,
 			  "data" : {
@@ -422,7 +407,7 @@ APP.post('/api/v1/user/info', function (req, res) {
 						"status" : HTTP_CODE_NO_CONTENT ,
 						"data" : {
 							"tokenStatus" : "valid",
-							"message" : `no result(s) found for user with id : ${id}`,
+							"error" : `no result(s) found for user with id : ${id}`,
 						}
 					};
 				  res.send(returnData);									
@@ -441,8 +426,9 @@ APP.post('/api/v1/user/info', function (req, res) {
 	  })
 })
 
-APP.post('/api/v1/user/info/notoken', function (req, res) {   
-	let id = req.body.id;
+// RAML READY
+APP.get('/api/v1/user/info/notoken', function (req, res) {   
+	let id = req.query.id; 
 	let idDB = id - 1; // zero based used to fetch records from the user.json file
 	
 	FS.readFile("./db/users.json", 'utf8', function (err, data) {
@@ -455,7 +441,6 @@ APP.post('/api/v1/user/info/notoken', function (req, res) {
 				"data" : {
 					  "id" : user.id,
 					  "first_name" : user.first_name,
-					  "tokenStatus" : "valid"
 					}
 			};
 		  res.send(returnData);				
@@ -463,7 +448,6 @@ APP.post('/api/v1/user/info/notoken', function (req, res) {
 			let returnData = {
 				"status" : HTTP_CODE_NO_CONTENT ,
 				"data" : {
-					"tokenStatus" : "valid",
 					"message" : `no result(s) found for user with id : ${id}`,
 				}
 			};
@@ -480,11 +464,7 @@ APP.post('/api/v1/user/info/edit', function (req, res) {
 	let last_name = req.body.last_name;
 	let address = req.body.address; 
 	
- 	let token = null;
-	if(req.body.token != "undefined"){
-		token = req.body.token;
-	}
-		
+	let token = req.headers.token;
 	JWT.verify(token, HELPER.getTokenSecret(), function(err, decoded){
 		if(!err){
 			let carEditStatus = false;
@@ -552,7 +532,7 @@ APP.post('/api/v1/user/info/edit', function (req, res) {
 
 APP.post('/api/v1/user/car/create', parser.array('image'), (req, res, next) => {
     
-	let token = null;
+	let token = req.headers.token;
 	let owner = req.body.owner;
 	let email = req.body.email;
 	let created_on = req.body.created_on;
@@ -699,10 +679,10 @@ APP.post('/api/v1/user/car/create', parser.array('image'), (req, res, next) => {
 		
 APP.post('/api/v1/user/car/info', function (req, res) {   
 	let id = req.body.id;
-	let token = req.body.token;
+	let token = req.headers.token;
 	let idDB = id - 1; // zero based used to fetch records from the cars.json file
 	
-	if(token == null){
+	if(token == null || token == "undefined"){
 		let returnData = {
 			  "status" : HTTP_CODE_BAD_REQUEST ,
 			  "data" : {
@@ -747,7 +727,7 @@ APP.post('/api/v1/user/car/info', function (req, res) {
 						"status" : HTTP_CODE_NO_CONTENT ,
 						"data" : {
 							"tokenStatus" : "valid",
-							"message" : `no result(s) found for car with id : ${id}`
+							"error" : `no result(s) found for car with id : ${id}`
 						}
 					};
 				  res.send(returnData);						
@@ -767,8 +747,9 @@ APP.post('/api/v1/user/car/info', function (req, res) {
 	
 })
 
-APP.post('/api/v1/user/car/info/notoken', function (req, res) {   
-	let id = req.body.id;
+// RAML READY
+APP.get('/api/v1/user/car/info/notoken', function (req, res) {   
+	let id = req.query.id; 
 	let idDB = id - 1; // zero based used to fetch records from the cars.json file
 
 	FS.readFile("./db/cars.json", 'utf8', function (err, data) {
@@ -810,7 +791,7 @@ APP.post('/api/v1/user/car/info/notoken', function (req, res) {
 })
 
 APP.post('/api/v1/user/car/edit', function (req, res) {
-	let token = null;
+	let token = req.headers.token;
 	let id = req.body.id;
 	
 	let manufacturer = req.body.manufacturer;
@@ -820,11 +801,7 @@ APP.post('/api/v1/user/car/edit', function (req, res) {
 	let status = req.body.status
 	let body_type = req.body.body_type;
 	let description = req.body.description;
-
-	if(req.body.token != "undefined" || token == null){
-		token = req.body.token;
-	}
-		
+	
 	JWT.verify(token, HELPER.getTokenSecret(), function(err, decoded){
 		if(!err){
 	 	
@@ -901,10 +878,10 @@ APP.get('/api/v1/user/car/delete', function (req, res) {
 })
 
 APP.post('/api/v1/user/cars/all', function (req, res) {
-	let token = req.body.token;
+	let token = req.headers.token;
 	let id = req.body.id;
 	
-	if(token == null){
+	if(token == null || token == "undefined"){
 		let returnData = {
 			  "status" : HTTP_CODE_BAD_REQUEST ,
 			  "data" : {
@@ -965,10 +942,10 @@ APP.post('/api/v1/user/cars/all', function (req, res) {
 })
 
 APP.post('/api/v1/user/cars/sold', function (req, res) {   
-	let token = req.body.token;
+	let token = req.headers.token;
 	let id = req.body.id;
 	
-	if(token == null){
+	if(token == null || token == "undefined"){
 		let returnData = {
 			  "status" : HTTP_CODE_BAD_REQUEST ,
 			  "data" : {
@@ -1033,10 +1010,10 @@ APP.post('/api/v1/user/cars/sold', function (req, res) {
 })
 
 APP.post('/api/v1/user/purchase/orders', function (req, res) {   
-	let token = req.body.token;
+	let token = req.headers.token;
 	let id = req.body.id;
 	
-	if(token == null){
+	if(token == null || token == "undefined"){
 		let returnData = {
 			  "status" : HTTP_CODE_BAD_REQUEST ,
 			  "data" : {
@@ -1102,10 +1079,10 @@ APP.post('/api/v1/user/purchase/orders', function (req, res) {
 
 APP.post('/api/v1/user/order/info', function (req, res) {   
 	let id = req.body.id;
-	let token = req.body.token;
+	let token = req.headers.token;
 	let idDB = id - 1; // zero based used to fetch records from the cars.json file
 	
-	if(token == null){
+	if(token == null || token == "undefined"){
 		let returnData = {
 			  "status" : HTTP_CODE_BAD_REQUEST ,
 			  "data" : {
@@ -1161,8 +1138,8 @@ APP.post('/api/v1/user/order/info', function (req, res) {
 })
 
 APP.post('/api/v1/cars/all', function (req, res) {
-	let token = req.body.token;	
-	if(token == null){
+	let token = req.headers.token;	
+	if(token == null || token == "undefined"){
 		let returnData = {
 			  "status" : HTTP_CODE_BAD_REQUEST ,
 			  "data" : {
@@ -1244,7 +1221,6 @@ APP.post('/api/v1/cars/all/notoken', function (req, res) {
 		
 		if(count > 1){
 			count = cars.length;
-			console.log("count length from all no token >>>>>>>>>" , count);
 			let returnData = {
 				"status" : HTTP_CODE_OK,
 				"data" : {
@@ -1350,15 +1326,16 @@ APP.post('/api/v1/cars/all/model/notoken', function (req, res) {
 })
 
 APP.post('/api/v1/user/purchase/create', function (req, res) {	
-	let token = req.body.token;
+	let token = req.headers.token;
 	let buyer = req.body.buyer;
 	let car_id = req.body.car_id;
 	let price = req.body.price;
+	let description = req.body.description;
 	let price_offered = req.body.price_offered;
 	let created_on = req.body.created_on;
 	
 	let newOrder;
-	if(token == null){
+	if(token == null || token == "undefined"){
 		let returnData = {
 			  "status" : HTTP_CODE_BAD_REQUEST ,
 			  "data" : {
@@ -1384,6 +1361,7 @@ APP.post('/api/v1/user/purchase/create', function (req, res) {
 					  "buyer" : buyer,
 					  "car_id" : car_id,
 					  "price": price,
+					  "description": description,
 					  "price_offered":  price_offered,
 					  "created_on":  created_on
 				};
@@ -1420,7 +1398,7 @@ APP.post('/api/v1/user/purchase/create', function (req, res) {
 
 APP.post('/api/v1/user/purchase/info', function (req, res) {   
 	let id = req.body.id;
-	let token = req.body.token;
+	let token = req.headers.token;
 	let idDB = id - 1; // zero based used to fetch records from the cars.json file
 	
 	if(token == "undefined" || token == null){
@@ -1475,11 +1453,12 @@ APP.post('/api/v1/user/purchase/info', function (req, res) {
 })
 
 APP.post('/api/v1/user/purchase/edit', function (req, res) {
-	let token = req.body.token;
+	let token = req.headers.token;
 	let id = req.body.id;
 	
 	let price = req.body.price;
 	let price_offered = req.body.price_offered;
+	let description = req.body.description;
 	let created_on = req.body.created_on;
 
 	if(token == "undefined" || token == null){
@@ -1510,6 +1489,7 @@ APP.post('/api/v1/user/purchase/edit', function (req, res) {
 							// the - 1 is because array are 0 based
 							data[item.id - 1].price = price;
 							data[item.id - 1].price_offered = price_offered;
+							data[item.id - 1].description = description;
 							data[item.id - 1].created_on = created_on;
 						}
 					}
@@ -1556,8 +1536,348 @@ APP.post('/api/v1/user/purchase/edit', function (req, res) {
 	}
 })
 
+APP.post('/api/v1/user/purchase/sent', function (req, res) {   
+	let token = req.headers.token;
+	let id = req.body.id;
+	
+	if(token == null || token == "undefined"){
+		let returnData = {
+			  "status" : HTTP_CODE_BAD_REQUEST ,
+			  "data" : {
+					"tokenStatus" : "invalid",
+					"error" : "No token provided"
+					}
+			};
+		  res.send(returnData);			
+	}
+	
+	JWT.verify(token, HELPER.getTokenSecret(), function(err, decoded){
+		if(!err){
+						
+			FS.readFile("./db/orders.json", 'utf8', function (err, data) {
+				data = JSON.parse(data);
+				let count = 0;
+				let userCars = [] ; // need to init as an empty array to use array push 
+					
+				for(let item of data) {			
+					if(item.owner == id && item.status == "SOLD"){
+						userCars.push(item);
+					}
+				}	
+					
+				if(Object.keys(data).length > 1){
+					count = Object.keys(userCars).length; 	
+				}
+				
+				if(count > 1){
+					count = userCars.length;
+					let returnData = {
+						"status" : HTTP_CODE_OK,
+						"data" : {
+							"count" : count,
+							"object" : userCars
+						}
+					}
+					res.send(returnData);			
+				}else{
+					let returnData = {
+						"status" : HTTP_CODE_BAD_REQUEST,
+						"data" : {
+							"error" : `No cars record(s) for user with id :  ${id}`
+						}
+					}
+					res.send(returnData);			
+				}
+				
+			});
+			
+		} else {
+			let returnData = {
+			  "status" : HTTP_CODE_BAD_REQUEST ,
+			  "data" : {
+					"tokenStatus" : "invalid",
+					"error" :   `${err.name} (${err.message})`
+				}
+			};
+		  res.send(returnData);			
+		}
+	  })
+})
+
+APP.post('/api/v1/user/purchase/received', function (req, res) {   
+	let token = req.headers.token;
+	let id = req.body.id;
+	
+	if(token == null || token == "undefined"){
+		let returnData = {
+			  "status" : HTTP_CODE_BAD_REQUEST ,
+			  "data" : {
+					"tokenStatus" : "invalid",
+					"error" : "No token provided"
+					}
+			};
+		  res.send(returnData);			
+	}
+	
+	JWT.verify(token, HELPER.getTokenSecret(), function(err, decoded){
+		if(!err){
+						
+			FS.readFile("./db/cars.json", 'utf8', function (err, data) {
+				data = JSON.parse(data);
+				let count = 0;
+				let userCars = [] ; // need to init as an empty array to use array push 
+					
+				for(let item of data) {			
+					if(item.owner == id && item.status == "SOLD"){
+						userCars.push(item);
+					}
+				}	
+					
+				if(Object.keys(data).length > 1){
+					count = Object.keys(userCars).length; 	
+				}
+				
+				if(count > 1){
+					count = userCars.length;
+					let returnData = {
+						"status" : HTTP_CODE_OK,
+						"data" : {
+							"count" : count,
+							"object" : userCars
+						}
+					}
+					res.send(returnData);			
+				}else{
+					let returnData = {
+						"status" : HTTP_CODE_BAD_REQUEST,
+						"data" : {
+							"error" : `No cars record(s) for user with id :  ${id}`
+						}
+					}
+					res.send(returnData);			
+				}
+				
+			});
+			
+		} else {
+			let returnData = {
+			  "status" : HTTP_CODE_BAD_REQUEST ,
+			  "data" : {
+					"tokenStatus" : "invalid",
+					"error" :   `${err.name} (${err.message})`
+				}
+			};
+		  res.send(returnData);			
+		}
+	  })
+})
+
+APP.post('/api/v1/user/flag/create', function (req, res) {	
+	let token = req.headers.token;
+
+	let car_id = req.body.car_id;
+	let created_on = req.body.created_on;
+	let reason = req.body.reason;
+	let description = req.body.description;
+	
+	let newFlag;
+	if(token == null || token == "undefined"){
+		let returnData = {
+			  "status" : HTTP_CODE_BAD_REQUEST ,
+			  "data" : {
+					"tokenStatus" : "invalid",
+					"error" : "No token provided"
+					}
+			};
+		  res.send(returnData);			
+	}
+	
+	JWT.verify(token, HELPER.getTokenSecret(), function(err, decoded){
+		if(!err){
+			FS.readFile("./db/flags.json", 'utf8', function (err, data) {
+				data = JSON.parse(data);
+				
+				let count = 1;
+				if(Object.keys(data).length > 1){
+					count = Object.keys(data).length;	
+				}
+								
+				newFlag = {
+					  "id" : count + 1,
+					  "car_id" : car_id,
+					  "created_on" : created_on,
+					  "reason": reason,
+					  "description": description
+				};
+								
+				data.push(newFlag);
+				FS.writeFile("./db/flags.json",JSON.stringify(data), function (err,data){
+				  if(err){
+					  //throw err;
+					  console.log("There was an error with [user/flag/create]", err);
+				  } 
+				});
+			
+				let returnData = {
+					"status" : HTTP_CODE_OK,
+					"data" : {
+						"object" : newFlag
+					}
+				}
+				res.send(returnData);		
+			})
+			
+		}else{
+			let returnData = {
+			  "status" : HTTP_CODE_BAD_REQUEST ,
+			  "data" : {
+					"tokenStatus" : "invalid",
+					"error" :   `${err.name} (${err.message})`
+				}
+			};
+		  res.send(returnData);
+		}
+	})			
+})
+
+APP.post('/api/v1/user/flag/info', function (req, res) {   
+	let id = req.body.id;
+	let token = req.headers.token;
+	let idDB = id - 1; // zero based used to fetch records from the cars.json file
+	
+	if(token == "undefined" || token == null){
+		let returnData = {
+			  "status" : HTTP_CODE_BAD_REQUEST ,
+			  "data" : {
+					"tokenStatus" : "invalid",
+					"error" : "No token provided"
+					}
+			};
+		  res.send(returnData);		
+	}else{
+		JWT.verify(token, HELPER.getTokenSecret(), function(err, decoded){
+			if(!err){
+				FS.readFile("./db/flags.json", 'utf8', function (err, data) {
+					let orders = JSON.parse( data );
+					let order = orders[idDB]; 
+					
+					if(order != null){
+						let returnData = {
+							"status" : HTTP_CODE_OK ,
+							"data" : {
+								"obj" : order,
+								"tokenStatus" : "valid"
+								}
+						};
+					  res.send(returnData);	
+					}else{
+						let returnData = {
+							"status" : HTTP_CODE_NO_CONTENT ,
+							"data" : {
+								"tokenStatus" : "valid",
+								"message" : `no result(s) found for order with id : ${id}`
+							}
+						};
+					  res.send(returnData);						
+					}
+			   });		 	
+			} else {
+				let returnData = {
+				  "status" : HTTP_CODE_BAD_REQUEST ,
+				  "data" : {
+						"tokenStatus" : "invalid",
+						"error" :   `${err.name} (${err.message})`
+					}
+				};
+			  res.send(returnData);
+			}
+	  })	
+	}
+		
+})
+
+APP.post('/api/v1/user/flag/edit', function (req, res) {
+	let token = req.headers.token;
+	let id = req.body.id;
+	
+	let reason = req.body.reason;
+	let description = req.body.description;
+
+	if(token == "undefined" || token == null){
+		let returnData = {
+			  "status" : HTTP_CODE_BAD_REQUEST ,
+			  "data" : {
+					"tokenStatus" : "invalid",
+					"error" : "No token provided"
+					}
+			};
+		  res.send(returnData);		
+	}else{
+		JWT.verify(token, HELPER.getTokenSecret(), function(err, decoded){
+			if(!err){
+			
+				let orderEditStatus = false;
+				
+				FS.readFile('./db/flags.json', 'utf8', function (err,data) {
+					data = JSON.parse(data); 
+					let flagExists = false;
+					let flag;
+					
+					for(let item of data) {			
+						if(item.id == id){
+							flagExists = true;
+							flag = item;
+		
+							// the - 1 is because array are 0 based
+							data[item.id - 1].reason = reason;
+							data[item.id - 1].description = description;
+						}
+					}
+							
+					if(orderExists){
+						FS.writeFile("./db/flags.json",JSON.stringify(data), function (err,data){
+						  if(err){
+							  //throw err;
+						  } 
+						});
+		
+						let returnData = {
+							"status" : HTTP_CODE_OK ,
+							"data" : {
+								"obj" : flag,
+								"tokenStatus" : "valid"
+								}
+						};
+						res.send(returnData);
+								
+					}else{
+						let returnData = {
+							"status" : HTTP_CODE_BAD_REQUEST,
+							"data" : {
+								"error" : `Unable to edit flag, flag with id : ${id} does not exist`
+							}
+						}
+						res.end( JSON.stringify(returnData));
+					}
+				
+				});	
+			} else {
+				let returnData = {
+				  "status" : HTTP_CODE_BAD_REQUEST ,
+				  "data" : {
+						"tokenStatus" : "invalid",
+						"error" :   `err.name (${err.message})`
+					}
+				};
+			  res.send(returnData);
+			}
+		  
+	  })	
+	}
+})
+
 APP.get('/', function (req, res) {     
-	res.send("Welcome to My API for Andela Bootcamp Cycle 45. ");
+	res.send("Welcome to My API for Andela Bootcamp Cycle 45.");
 })
 
 APP.get('api/v1/test', function (req, res) {     
@@ -1600,6 +1920,6 @@ APP.post('/upload', (req, res, next) => {
   })
 })
 		
-console.log('Running at Port 4333');
+console.log('Running at Port 3333');
 
-
+module.exports = server;
