@@ -49,7 +49,7 @@ const HTTP_CODE_NOT_FOUND = 404;
 const HTTP_CODE_INTERNAL_SERVER_ERROR = 500;
 								
 APP.use('/', ROUTER);
-APP.listen(process.env.port || 3333);
+//APP.listen(process.env.port || 3333);
 
 //const PORT = process.env.PORT || 3000;
 //APP.listen(PORT, () => {
@@ -73,12 +73,6 @@ APP.use(function(req, res, next) {
 
     return next();	
 });
-
-//don't show the log when it is test
-if(config.util.getEnv('NODE_ENV') !== 'test') {
-    //use morgan to log at command line
-    app.use(morgan('combined')); //'combined' outputs the Apache style LOGs
-}
 
 process.env.NODE_ENV = 'test';
 
@@ -1919,7 +1913,9 @@ APP.post('/upload', (req, res, next) => {
     )
   })
 })
-		
-console.log('Running at Port 3333');
+
+const server = APP.listen(process.env.port || 3333, () => {
+  console.log('Running at Port 3333');
+});		
 
 module.exports = server;
