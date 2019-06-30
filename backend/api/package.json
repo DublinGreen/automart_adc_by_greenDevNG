@@ -1,0 +1,53 @@
+{
+  "name": "automart_adc_bootcamp_cycle_45",
+  "version": "1.0.0",
+  "description": "Auto   Mart   is   an   online   marketplace   for   automobiles   of   diverse   makes,   model   or   body   type.   With  ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DublinGreen/automart_adc_by_greenDevNG.git"
+  },
+  "keywords": [
+    "automart",
+    "ADC",
+    "cycle",
+    "45",
+    "greenDevNG"
+  ],
+  "author": "dublin-green",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DublinGreen/automart_adc_by_greenDevNG/issues"
+  },
+  "homepage": "https://github.com/DublinGreen/automart_adc_by_greenDevNG#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "chai-http": "^4.3.0",
+    "cloudinary": "^1.14.0",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "express-session": "^1.16.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.5.14",
+    "multer": "^1.4.1",
+    "multer-storage-cloudinary": "^2.2.1",
+    "pg": "^7.11.0",
+    "pg-promise": "^8.7.2",
+    "supervisor": "^0.12.0"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "mocha": "^6.1.4",
+    "nodemon": "^1.17.4"
+  }
+}

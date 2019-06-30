@@ -1,0 +1,278 @@
+#%RAML 1.0
+---
+title: Automart Andela Challenge for cycle 45 API Documentation
+baseUri:   http://localhost:3333
+version: v1
+protocols: [ HTTPS ]
+mediaType: application/json
+description:  "API Documentation for Andela Challenge (automart). API built with Node js and express by idisimagha dublin-green (greendublin007@gmail.com). Visit https://dublingreen.github.io/automart_adc_by_greenDevNG/apidoc for public API documentation"
+
+/api/v1/user:
+  /info:
+    post:  		
+      description: "get user info from database with user's id"    
+      headers: 
+        token:        	
+      body: 
+        application/x-www-form-urlencoded:      
+          properties:
+            id:
+              description: "id to be sent in body to get user info from database"
+              required: true
+              example: 1
+              type: integer           
+      responses:
+        401:
+          body:
+            application/json:
+              example: |
+                {
+                  "status": 401,
+                  "error": "No token provided"                  
+                }             
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                 "status": 200
+                  "data": {
+                    "id" : 1,
+                    "email" : "user email",                    
+                    "first_name" : "user firstname",
+                    "last_name" : "user lastname",
+                    "address" : "user address",
+                    "is_admin" : "true || false",
+                    "tokenStatus" : "valid",                                                                                
+                  }                               
+                }
+        204:
+          body:
+            application/json:
+              example: |
+                {
+                  "status": 204,                
+                  "error": "database error message",
+                  "queryString": "query string sent to database"                  
+                }                                
+  /info/notoken:
+    get:
+      queryParameters:
+        id:
+          description: "user id"        
+          type: integer                  
+          required: true           
+      description: "get user info, does not need token"
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "data": {
+                    "id": "1",
+                    "first_name": "bernard"
+                  },
+                  "status": 200                  
+                }
+        204:
+          body:
+            application/json:
+              example: |
+                {
+                  "status": 204 ,
+                  "error" "database error",
+                  "queryString" : "Query string sent to database"                 
+                }                
+  /car/info/notoken:
+    get:
+      queryParameters:
+        id:
+          description: "car id"        
+          type: integer                  
+          required: true        
+      description: "get car info, does not need token"
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "data": {
+                    "id": "1",
+                    "owner": "1",
+                    "created_on": "2019-6-5",
+                    "state": "USED",
+                    "status": "AVAILABLE",
+                    "price": "15000000",
+                    "manufacturer": "mercedes",
+                    "model": "g-wagon",
+                    "description": "Nice ride, you can't go wrong with this. #WEGOBUYBENZ. Interested buyers should contact me on 07032090809 or sent a purchase order. Thanks for your business in advance.",
+                    "picture3": "http://res.cloudinary.com/cliquedom-technology/image/upload/v1559771629/automart_adc/3.jpeg.jpg",
+                    "picture4": "http://res.cloudinary.com/cliquedom-technology/image/upload/v1559771629/automart_adc/2.jpeg.jpg",
+                    "picture5": "http://res.cloudinary.com/cliquedom-technology/image/upload/v1559772425/automart_adc/1.jpeg.jpg"
+                  },
+                  "status": 200                  
+                }
+        204:
+          body:
+            application/json:
+              example: |
+                {
+                  "status": 204         
+                  "error" : "database error",
+                  "queryString" : "Query string sent to database"         
+                }                
+  /password/recovery:
+    post:  		
+      description: "user password recovery , will check user info with user email"    
+      formParameters:
+        email:
+          description: "user email, will be used to init password reset"
+          example: "greendublin007@gmail.com" 
+          required: true
+          type: string      
+      body:
+        application/x-www-form-urlencoded:      
+          properties:
+            email:
+              description: "user email to generate password reset options (link)"
+              required: true
+              type: string         
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "data": {
+                    "email" : "valid",
+                    "reset_token" : 64194,
+                    "password_reset_token" : "idisimagha64194dublin-green",
+                    "password_reset_page" : "passwordreset.html?passwordResetToken=idisimagha64194dublin-green&id=1&resetToken=64194",
+                  },
+                  "status": 200                               
+                }
+        204:
+          body:
+            application/json:
+              example: |
+                {
+                  "status": 204 ,
+                   "error" : "database error message",
+                   "queryString" : "sent query string"             
+                }                
+
+
+
+
+/api/v1/token:
+  /validate:
+    get:
+      queryParameters:
+        token:
+          description: "token for validation"        
+          type: string                  
+          required: true        
+      description: "validate a token, token string is passed as a GET"     
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "data": {
+                    "tokenStatus" : "valid",
+                    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IiQyYiQxMCRYRnNiQ2s4dVlYT2hLSTE3V1BESkt1c3hOdmZEMkZyY1AzZEouTW1VNTNNREJrQmxVWEZFeSIsImlhdCI6MTU2MDA1MTEzMSwiZXhwIjoxNTYwMTM3NTMxfQ.2V0Ddh2S7poO9WTGwE7jY1wYGAhyFJ3X7orz4WYAGYw",
+                  },
+                  "status": 200                               
+                }
+        400:
+          body:
+            application/json:
+              example: |
+                {
+                  "error": "JsonWebTokenError (jwt must be provided)",
+                  "tokenStatus": "invalid"          
+                  "status" : 400        
+                }       
+    post:  		
+      body: application/x-www-form-urlencoded:       
+      description: "validate a token, token passed with headers"
+      headers: 
+        token:            
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "data": {
+                    "tokenStatus" : "valid",
+                    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IiQyYiQxMCRYRnNiQ2s4dVlYT2hLSTE3V1BESkt1c3hOdmZEMkZyY1AzZEouTW1VNTNNREJrQmxVWEZFeSIsImlhdCI6MTU2MDA1MTEzMSwiZXhwIjoxNTYwMTM3NTMxfQ.2V0Ddh2S7poO9WTGwE7jY1wYGAhyFJ3X7orz4WYAGYw",
+                  },
+                  "status": 200                               
+                }
+        400:
+          body:
+            application/json:
+              example: |
+                {
+                  "error": "JsonWebTokenError (jwt must be provided)",
+                  "tokenStatus": "invalid"          
+                  "status" : 400        
+                }                
+
+
+/api/v1/auth:
+  /signup:  
+    post:  		
+      description: "register a new users"    
+      body:
+        application/x-www-form-urlencoded:      
+          properties:
+            email:
+              description: "user email"
+              required: true
+              type: string            
+            first_name:
+              description: "user first name"
+              required: true
+              type: string            
+            last_name:
+              description: "user last name"
+              required: true
+              type: string            
+            password:
+              description: "user password"
+              required: true
+              type: string     
+            address:
+              description: "user address"
+              required: true
+              type: string           
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "data": {
+                    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IiQyYiQxMCRYRnNiQ2s4dVlYT2hLSTE3V1BESkt1c3hOdmZEMkZyY1AzZEouTW1VNTNNREJrQmxVWEZFeSIsImlhdCI6MTU2MDA1MTEzMSwiZXhwIjoxNTYwMTM3NTMxfQ.2V0Ddh2S7poO9WTGwE7jY1wYGAhyFJ3X7orz4WYAGYw",
+                    "id" : "user id",
+                    "first_name" : "first last_name",
+                    "last_name" : "user last_name",
+                    "email" : "user email",
+                    "is_admin" : "false"                                                                                
+                  },
+                  "status": 200                               
+                }
+        400:
+          body:
+            application/json:
+              example: |
+                {
+                  "status" : 400 ,
+                  "error": "Email already in use"                         
+                }                
+

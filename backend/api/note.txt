@@ -1,0 +1,198 @@
+REpresentational State Transfer for automart challenge andela bootcamp cycle 45
+
+RAML to document your APIs and read the documentation in ARC
+
+
+https://newfivefour.com/javascript-express-multi-files-cloudinary.html
+
+
+  var formData = new FormData()
+    formData.append("name", "hi")
+    formData.append("image", file1)
+    formData.append("image", file2)
+
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
+const upload = multer({ dest: 'uploads/' })
+
+cloudinary.config({ 
+  cloud_name: 'xxx', 
+  api_key: 'xxx', 
+  api_secret: 'xx' 
+});
+
+var parser = multer({ 
+  storage: cloudinaryStorage({
+    cloudinary: cloudinary,
+    folder: 'xxx',
+    filename: function (req, file, cb) {
+      cb(undefined, file.originalname);
+    }
+  })
+});
+
+
+router.post('/uploadImages', parser.array('image'), (req, res, next) => {
+  console.log(req.files)
+  // req.files will show you the uploaded files
+  // and req.body will show you the rest of your form data
+  res.json("done")
+})
+
+
+----------------------------------
+
+Switching Over to the postgres Account
+Switch over to the postgres account on your server by typing:
+
+sudo -i -u postgres
+You can now access a Postgres prompt immediately by typing:
+
+have problems connection to postgress users so use this
+psql automart_api_db
+
+psql
+This will log you into the PostgreSQL prompt, and from here you are free to interact with the database management system right away.
+
+Exit out of the PostgreSQL prompt by typing:
+
+\l list database
+\c connect to database
+\q quit
+\du list users	
+\dt show tables in database
+--------------------------------------------------------------------------
+
+The user needs access to the database, obviously:
+
+GRANT CONNECT ON DATABASE my_db TO my_user;
+And (at least) the USAGE privilege on the schema:
+
+GRANT USAGE ON 
+GRANT USAGE ON SCHEMA public TO my_user;
+Then, all permissions for all tables (requires Postgres 9.0 or later):
+
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO my_user;
+And don't forget sequences (if any):
+
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO automart;
+
+--------------------------------------------------------------------------------------------
+DROP DATABASE automart_api_db;
+
+
+[{"id":1,"user_id":"1","car_id":"3","created_on":"2019-6-13","reason":"PRICING","description":"testing again"},
+CREATE TABLE flags (
+    id serial PRIMARY KEY,
+    user_id INT  NOT NULL,
+    car_id INT NOT NULL,
+    reason TEXT,
+    description TEXT,
+	created_on DATE NOT NULL DEFAULT CURRENT_DATE
+);
+
+INSERT INTO flags (user_id, car_id,reason,description)
+  VALUES (1, 3,'PRICING','testing, pls ignore');
+
+
+[{"id":1,"status":"PENDING","buyer":"1","owner":"2","car_id":"3","price":"2500000","description":"I will like to inspect it first, very concerned about the engine.","price_offered":"2000000","created_on":"2019-6-13"},
+CREATE TABLE orders (
+    id serial PRIMARY KEY,
+    status VARCHAR (50) NOT NULL,
+    buyer INT  NOT NULL,
+    owner INT NOT NULL,
+    car_id INT NOT NULL,
+    price BIGINT NOT NULL,
+    description TEXT,
+    price_offered MONEY,
+    created_on DATE NOT NULL DEFAULT CURRENT_DATE
+);
+
+INSERT INTO orders (status, buyer,owner,car_id,price,description,price_offered) VALUES ('PENDING', 1,2,3, 2500000,'I will like to inspect it first, very concerned about the engine.','2000000');
+
+CREATE TABLE cars (
+	id serial PRIMARY KEY,
+	owner INT NOT NULL,
+	state state,
+	status status,
+	price BIGINT NOT NULL,
+	manufacturer VARCHAR (100) NOT NULL,
+	model VARCHAR (100) NOT NULL,
+	body_type VARCHAR (100) NOT NULL,
+	description TEXT,
+	picture1 VARCHAR (250) NOT NULL,
+	picture2 VARCHAR (250) NOT NULL,
+	picture3 VARCHAR (250) NOT NULL,
+	picture4 VARCHAR (250) NOT NULL,
+	picture5 VARCHAR (250) NOT NULL,
+	created_on DATE NOT NULL DEFAULT CURRENT_DATE
+);
+INSERT INTO cars (owner, state,status,price,manufacturer,model,body_type,description,picture1,picture2,picture3,picture4,picture5)
+ VALUES (2, 'USED','AVAILABLE',2500000,'toyota','camry 2015','saloon','I will like to inspect it first, very concerned about the engine.','http://res.cloudinary.com/cliquedom-technology/image/upload/v1559764658/automart_adc/6.jpg.jpg','','','','');	
+ 
+
+CREATE TABLE users (
+	id serial PRIMARY KEY,
+	email VARCHAR (250) NOT NULL UNIQUE,
+	first_name VARCHAR (250) NOT NULL,
+	last_name VARCHAR (250) NOT NULL,
+	password VARCHAR (250) NOT NULL,
+	address VARCHAR (250) NOT NULL,
+	is_admin is_admin,
+	created_on DATE NOT NULL DEFAULT CURRENT_DATE
+);
+
+INSERT INTO users (email, first_name,last_name,password,address,is_admin)
+ VALUES ('greendublin007@gmail.com', 'idisimagha','dublin-green','$2b$10$XQ0DcrLNffI4jazAoe0VJeXbIFNZQS6.CQNSBBo1cK5MwouBkb8fG','no 16 lukeman adeleke street badore ajah lagos nigeria','true');	
+ 
+ 
+ CREATE TYPE state AS ENUM('NEW','USED');
+ CREATE TYPE status AS ENUM('SOLD','AVAILABLE');
+ CREATE TYPE is_admin AS ENUM('true','false');
+ 
+running node app with changes without restarting
+----------
+supervisor index.js
+
+UPDATE users SET address = 'no 16 lukeman adeleke street badore ajah' WHERE id = 1;
+
+
+------------------------------------------------
+
+ so_id INTEGER REFERENCES so_headers(id),
+ 
+ CREATE TABLE so_items (
+  item_id int4 NOT NULL,   
+  so_id int4 REFERENCES so_headers(id) ON DELETE CASCADE,
+  product_id int4,
+  qty int4,
+  net_price numeric,
+  PRIMARY KEY (item_id,so_id)
+);
+----------------------------------------
+ALC WIFI PASSWORD : ALC4.0123$
+MEET UP 20TH JULY 2019
+AUG 3 2019
+FOCUS ON THE MAIN TRACK FIRST BEFORE YOU TO DRIVE INTO THE DEEP DRIVE
+
+-------------------------------------
+
+Basic Merging
+Suppose you’ve decided that your issue #53 work is complete and ready to be merged into your master branch. In order to do that, you’ll merge your iss53 branch into master, much like you merged your hotfix branch earlier. All you have to do is check out the branch you wish to merge into and then run the git merge command:
+
+$ git checkout master
+Switched to branch 'master'
+$ git merge iss53
+Merge made by the 'recursive' strategy.
+index.html |    1 +
+1 file changed, 1 insertion(+)
+
+------------------------------------
+
+Basic Merge Conflicts
+Occasionally, this process doesn’t go smoothly. If you changed the same part of the same file differently in the two branches you’re merging, Git won’t be able to merge them cleanly. If your fix for issue #53 modified the same part of a file as the hotfix branch, you’ll get a merge conflict that looks something like this:
+
+$ git merge iss53
+Auto-merging index.html
+CONFLICT (content): Merge conflict in index.html
+Automatic merge failed; fix conflicts and then commit the result.s

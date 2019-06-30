@@ -1,0 +1,1 @@
+[{"id" : 1,"buyer" : 1,"car_id" : 1,"price": 2600000,"price_offered": 2000000,"status": "PENDING","created_on":"28-05-2019"},{"id" : 2,"buyer" : 1,"car_id" : 1,"price": 2600000,"price_offered": 1800000,"status": "PENDING","created_on":"28-05-2019"}]

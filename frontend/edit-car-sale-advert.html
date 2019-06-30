@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Edit Car Sale Advert</title>
+		<meta name="robots"  content="noindex" />
+		<meta name="author" content="Dublin-Green (greendublin007@gmail.com)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		
+		<link rel="icon" type="image/x-icon" href="favicon.png" />		
+		<link rel="stylesheet" href="assets/css/main.css">
+	</head>
+	
+	<body id="banner">
+		<section id="loading">
+			<img src="assets/img/giphy.gif" alt="loading" />
+		</section>
+		<head>
+			<nav id="navigation" w3-include-html="segments/user-nav.html"></nav>
+		</head>
+		
+		
+		<section class="mainContainer">
+			<nav class="userMenu" w3-include-html="segments/user-secondary-menu.html"></nav>
+			
+			<section class="userContentArea">
+				<form name="edit_car_advert" action="#" method="post">
+					<h1 id="headingForCarEdit">Edit Post Car Sale Advert</h1><hr>
+					<section id="alert">
+						<button type="button" id="closeAlert">X</button>
+						<section class="clearfix"></section>
+						<p id ="alertContent">&nbsp;</p>
+					</section><br>
+					
+					<section class="inputGroup">
+						<p class="text-muted"><strong>This is very important</strong> Has the vechicle been <strong>SOLD</strong> or is it still <strong>AVAILABLE</strong></p>
+						<select class="inputSelect" name="vechicle_status" required>
+							<option value=""> Vechicle Status</option>
+							<option value="AVAILABLE" name="AVAILABLE" > AVAILABLE</option>
+							<option value="SOLD" name="SOLD"> SOLD</option>
+						</select>
+					</section>
+					<p class="text-muted"><strong>NOTE ** if you set it to SOLD, the advert will not longer be listed on the market</strong></p>
+					<hr><br>
+					<section class="inputGroup">
+						<select class="inputSelect" name="vechicle_state" required>
+							<option value=""> State of Vechicle</option>
+							<option value="NEW" name="NEW" > New</option>
+							<option value="USED" name="USED"> Used</option>
+						</select>
+					</section>
+					<section class="inputGroup">
+						  <input class="input"  type="number" name="vechicle_price" min="1" max="500000000" placeholder="Vechicle Price *" required>
+					</section>
+					<section class="inputGroup">
+						  <input class="input" type="text" name="vechicle_manufacturer" required  placeholder="Vechicle Manufacturer*" />
+					</section>
+					<section class="inputGroup">
+						  <input class="input" type="text" name="vechicle_model" required  placeholder="Vechicle Model*" />
+					</section>
+					<section class="inputGroup">
+						  <input class="input" type="text" name="vechicle_body_type" required  placeholder="Vechicle Body Type*" />
+					</section>
+					<section class="inputGroup">
+						<textarea class="inputTextArea" name="description" required spellcheck="true" placeholder="Description about the vehicle"></textarea>
+					</section>
+					<button class="btn" type="submit">Edit Car Info</button>
+				</form>	
+			</section>
+		</section>
+		
+		<section class="clearfix"></section>
+		<footer id="footerBoxDashboard" w3-include-html="segments/footer.html"></footer>
+		<script src="assets/js/apiConfig.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/editCarInfo.js"></script>
+	</body>
+</html>

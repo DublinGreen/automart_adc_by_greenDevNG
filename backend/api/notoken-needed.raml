@@ -1,0 +1,78 @@
+#%RAML 1.0
+---
+title: Automart API Documentation v1
+baseUri:   http://localhost:3333
+version: v1
+protocols: [ HTTPS ]
+mediaType: application/json
+
+/api/v1/user:
+  /info/notoken:
+    get:
+      queryParameters:
+        id:
+      description: "get car owner info, does not need token"
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "data": {
+                    "id": "1",
+                    "first_name": "bernard"
+                  },
+                  "status": 200                  
+                }
+        204:
+          body:
+            application/json:
+              example: |
+                {
+                  "data": {
+                    "message": "no result(s) found for user with id : 1"
+                  },
+                  "status": 204                  
+                }                
+
+
+/api/v1/user/car:
+  /info/notoken:
+    get:
+      queryParameters:
+        id:
+      description: "get car info, does not need token"
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "data": {
+                    "id": "1",
+                    "owner": "1",
+                    "created_on": "2019-6-5",
+                    "state": "USED",
+                    "status": "AVAILABLE",
+                    "price": "15000000",
+                    "manufacturer": "mercedes",
+                    "model": "g-wagon",
+                    "description": "Nice ride, you can't go wrong with this. #WEGOBUYBENZ. Interested buyers should contact me on 07032090809 or sent a purchase order. Thanks for your business in advance.",
+                    "picture3": "http://res.cloudinary.com/cliquedom-technology/image/upload/v1559771629/automart_adc/3.jpeg.jpg",
+                    "picture4": "http://res.cloudinary.com/cliquedom-technology/image/upload/v1559771629/automart_adc/2.jpeg.jpg",
+                    "picture5": "http://res.cloudinary.com/cliquedom-technology/image/upload/v1559772425/automart_adc/1.jpeg.jpg"
+                  },
+                  "status": 200                  
+                }
+        204:
+          body:
+            application/json:
+              example: |
+                {
+                  "data": {
+                    "message": "no result(s) found for car with id : 1"
+                  },
+                  "status": 204                  
+                }                
+
+

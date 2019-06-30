@@ -1,0 +1,159 @@
+#%RAML 1.0
+---
+title: Automart Andela Challenge for cycle 45 API Documentation
+baseUri:   http://localhost:3333
+version: v1
+protocols: [ HTTPS ]
+mediaType: application/json
+description:  "API Documentation for Andela Challenge (automart). API built with Node js and express by idisimagha dublin-green (greendublin007@gmail.com). Visit https://dublingreen.github.io/automart_adc_by_greenDevNG/apidoc for public API documentation"
+
+
+/api/v1/user:
+  /info/notoken:
+    get:
+      queryParameters:
+        id:
+          description: "user id"        
+          type: string                  
+          required: true           
+      description: "get car owner info, does not need token"
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "data": {
+                    "id": "1",
+                    "first_name": "bernard"
+                  },
+                  "status": 200                  
+                }
+        204:
+          body:
+            application/json:
+              example: |
+                {
+                  "data": {
+                    "message": "no result(s) found for user with id : 1"
+                  },
+                  "status": 204                  
+                }                
+  /car/info/notoken:
+    get:
+      queryParameters:
+        id:
+          description: "car id"        
+          type: string                  
+          required: true        
+      description: "get car info, does not need token"
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "data": {
+                    "id": "1",
+                    "owner": "1",
+                    "created_on": "2019-6-5",
+                    "state": "USED",
+                    "status": "AVAILABLE",
+                    "price": "15000000",
+                    "manufacturer": "mercedes",
+                    "model": "g-wagon",
+                    "description": "Nice ride, you can't go wrong with this. #WEGOBUYBENZ. Interested buyers should contact me on 07032090809 or sent a purchase order. Thanks for your business in advance.",
+                    "picture3": "http://res.cloudinary.com/cliquedom-technology/image/upload/v1559771629/automart_adc/3.jpeg.jpg",
+                    "picture4": "http://res.cloudinary.com/cliquedom-technology/image/upload/v1559771629/automart_adc/2.jpeg.jpg",
+                    "picture5": "http://res.cloudinary.com/cliquedom-technology/image/upload/v1559772425/automart_adc/1.jpeg.jpg"
+                  },
+                  "status": 200                  
+                }
+        204:
+          body:
+            application/json:
+              example: |
+                {
+                  "data": {
+                    "message": "no result(s) found for car with id : 1"
+                  },
+                  "status": 204                  
+                }                
+  /password/recovery:
+    post:  		
+      description: "user password recovery , will check user info with user email"    
+      formParameters:
+        email:
+          description: "user email, will be used to init password reset"
+          example: "greendublin007@gmail.com" 
+          required: true
+          type: string      
+      body:
+        application/x-www-form-urlencoded:      
+          properties:
+            email:
+              description: "user email to generate password reset options (link)"
+              required: true
+              type: string         
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "data": {
+                    "email" : "valid",
+                    "reset_token" : 64194,
+                    "password_reset_token" : "idisimagha64194dublin-green",
+                    "password_reset_page" : "passwordreset.html?passwordResetToken=idisimagha64194dublin-green&id=1&resetToken=64194",
+                  },
+                  "status": 200                               
+                }
+        204:
+          body:
+            application/json:
+              example: |
+                {
+                  "data": {
+                    "error" : "No user has registered with that email : greendublin007@gmail.com"
+                  },
+                  "status": 204               
+                }                
+
+
+
+
+/api/v1/token:
+  /validate:
+    get:
+      queryParameters:
+        token:
+          description: "token for validation"        
+          type: string                  
+          required: true        
+      description: "validate a token, token string is passed as a GET"      
+    post:  		
+      body:
+        application/x-www-form-urlencoded:       
+      description: "validate a token, token passed with headers"
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "data": {
+                    "tokenStatus" : "valid",
+                    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IiQyYiQxMCRYRnNiQ2s4dVlYT2hLSTE3V1BESkt1c3hOdmZEMkZyY1AzZEouTW1VNTNNREJrQmxVWEZFeSIsImlhdCI6MTU2MDA1MTEzMSwiZXhwIjoxNTYwMTM3NTMxfQ.2V0Ddh2S7poO9WTGwE7jY1wYGAhyFJ3X7orz4WYAGYw",
+                  },
+                  "status": 200                               
+                }
+        400:
+          body:
+            application/json:
+              example: |
+                {
+                  "error": "JsonWebTokenError (jwt must be provided)",
+                  "tokenStatus": "invalid"                  
+                }                
+

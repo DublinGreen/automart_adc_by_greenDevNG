@@ -1,0 +1,19 @@
+[
+	{
+	   {
+		  "id" : Integer,
+		  "car_id" : Integer,
+		  "created_on" : DateTime,
+		  "reason": String,
+		  "description": String
+	   },
+	   
+	   {
+		  "id" : Integer,
+		  "car_id" : Integer,
+		  "created_on" : DateTime,
+		  "reason": String,
+		  "description": String
+	   }
+	}
+]

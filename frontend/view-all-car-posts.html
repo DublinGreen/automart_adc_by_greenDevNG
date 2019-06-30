@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Auto Market</title>
+		<meta name="robots"  content="noindex" />
+		<meta name="author" content="Dublin-Green (greendublin007@gmail.com)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		
+		<link rel="icon" type="image/x-icon" href="favicon.png" />		
+		<link rel="stylesheet" href="assets/css/main.css">
+	</head>
+	
+	<body id="bannerDashboard2">
+		<section id="loading">
+			<img src="assets/img/giphy.gif" alt="loading" />
+		</section>
+		<head>
+			<nav id="navigation" w3-include-html="segments/user-nav.html"></nav>
+		</head>
+		
+		
+		<section class="mainContainer">
+			
+			<section class="userContentAreaFull" >
+				<h1 class="text-center">Auto Market</h1><hr>
+				<p class="text-instruction text-center">Choose from a wide range of vechicles (<span id="totalCount">0</span>) on <span class="vehicleStatusOnSale">sale</span> Click the car image for more information.</p><hr>
+				
+				<section id="alert">
+					<button type="button" id="closeAlert">X</button>
+					<section class="clearfix"></section>
+					<p id ="alertContent">&nbsp;</p>
+				</section><br>
+				
+				<section class="dashboardPurchaseOrderBoxFull" >
+					
+					<form action="" method="post">
+						<section class="inputGroup">
+							<input class="inputSearch" type="text" name="search" placeholder="Search" required list="cars" />
+							
+							<select class="inputSelectSearch" name="vechicle_state">
+								<option selected="" value="all"> Search All Attributes</option>
+								<option value="manufactuers"> Manufactuers</option>
+								<option value="model"> Model</option>
+								<option value="body_type"> Body Type</option>
+								<option value="price_range"> Price Range</option>
+							</select>
+							<button class="btnSearch" type="submit">Filter Vechicles</button>
+						</section>
+						
+						<datalist id="cars">
+						</datalist>		
+					</form>
+					
+					<section id="autoGenCarsBox">
+						<!-- AUTO GENERATED WITH JAVASCRIPT -->
+					</section>
+					
+				</section>
+				
+			</section>
+		</section>
+		
+		<section class="clearfix"></section>
+		<footer id="footerBoxDashboard" w3-include-html="segments/footer.html"></footer>
+		<script src="assets/js/apiConfig.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>

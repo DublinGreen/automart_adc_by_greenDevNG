@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Automart User Login</title>
+		<meta name="robots"  content="noindex" />
+		<meta name="author" content="Dublin-Green (greendublin007@gmail.com)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		
+		<link rel="icon" type="image/x-icon" href="favicon.png" />		
+		<link rel="stylesheet" href="assets/css/main.css">		
+	</head>
+	
+	<body id="banner">
+		<section id="loading">
+			<img src="assets/img/giphy.gif" alt="loading" />
+		</section>
+		<head>
+			<nav id="navigation" w3-include-html="segments/nav.html"></nav>
+		</head>
+		
+		
+		<section class="containerSignup">
+			<article class="halfContainerUserBoxLeft">
+				<h1 class="text-center"><blink>AutoMart </blink></h1><hr>
+				<p class="read">Auto   Mart   is   an   online   marketplace   for   automobiles   of   diverse   makes,   model   or   body   type.   With  Auto Mart, users can sell their cars or buy from trusted dealerships or private sellers. </p>
+				<p class="read"><strong>Login to your account </strong></p>
+			</article>
+			
+			<article class="halfContainerUserBoxRight halfContainerUserBoxRight2">
+				<form action="login.html" method="post" name="userLoginForm" autocomplete="on">
+					<h1>Login</h1><hr>
+					<section id="alert">
+						<button type="button" id="closeAlert">X</button>
+						<section class="clearfix"></section>
+						<p id ="alertContent">&nbsp;</p>
+					</section><br>
+					
+					<section class="inputGroup">
+						<input autofocus class="input" type="email" name="email" required  placeholder="Email*" title="Your Email Here"/>
+					</section>
+					<section class="inputGroup">
+						<input class="input" type="password" name="password" required  placeholder="Password*" title="Your Password Here"/>
+					</section>
+					<button class="btn" type="submit">Login</button>
+					<br><br>
+					<a href="passwordrecovery.html">Forgot your password?</a>  || 
+					<a href="signup.html">Don't have an account?</a>
+				</form>	
+			</article>
+		</section>
+		
+		<section class="clearfix"></section>
+		<footer id="footerBoxDashboard" w3-include-html="segments/footer.html"></footer>
+		
+		<script src="assets/js/apiConfig.js"></script>	
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>

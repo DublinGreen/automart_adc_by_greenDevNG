@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Flag Car Post</title>
+		<meta name="robots"  content="noindex" />
+		<meta name="author" content="Dublin-Green (greendublin007@gmail.com)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		
+		<link rel="icon" type="image/x-icon" href="favicon.png" />		
+		<link rel="stylesheet" href="assets/css/main.css">
+	</head>
+	
+	<body id="banner">
+		<section id="loading">
+			<img src="assets/img/giphy.gif" alt="loading" />
+		</section>
+		<head>
+			<nav id="navigation" w3-include-html="segments/user-nav.html"></nav>
+		</head>
+		
+		
+		<section class="mainContainer">
+			<nav class="userMenu" w3-include-html="segments/user-secondary-menu.html"></nav>
+			
+			<section class="userContentArea">
+				<form autocomplete="on" id="sendFlagOrder" name="send_flag_order" action="flag-car-post.html" method="post" >
+					<h1 id="purchaseOrderHeading">Flag/Report this car post as fraudulent</h1><hr>				
+					<section id="alert">
+						<button type="button" id="closeAlert">X</button>
+						<section class="clearfix"></section>
+						<p id ="alertContent">&nbsp;</p>
+					</section><br>	
+					<figure>
+						<img  id="mainImage" class="vehicleImageMain"  src='https://via.placeholder.com/350' alt='image' title='image'/>	
+					</figure>
+					<h3 id="carPrice">.............</h3>
+					<p class="text-muted" id="carDescription"></p>
+					<hr>
+					<section class="inputGroup">
+						<select class="inputSelect" name="reason" required="">
+							<option value=""> Reason for flagging</option>
+							<option value="PRICING" name="PRICING"> Pricing</option>
+							<option value="WEIRD_DEMANDS" name="WEIRD_DEMANDS"> Weird Demands</option>
+						</select>
+					</section>
+					
+					<section class="inputGroup">
+						<textarea class="inputTextArea" name="description" spellcheck="true" placeholder="Any thing you will like to add?" ></textarea>
+					</section>
+					<button class="btn" type="submit">Send Flag/Report this car post as fraudulent</button>
+				</form>	
+			</section>
+		</section>
+		
+		<section class="clearfix"></section>
+		<footer id="footerBoxDashboard" w3-include-html="segments/footer.html"></footer>
+		<script src="assets/js/apiConfig.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/sendFlag.js"></script>
+	</body>
+</html>

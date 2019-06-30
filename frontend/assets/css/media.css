@@ -1,0 +1,189 @@
+/**
+ *  Main stylesheet for automart challenge
+ * main.css
+ * By Dublin-Green
+ * 
+*   @media queries
+ * **/
+
+/** @ MEDIA QUERIES **/
+ @-webkit-keyframes condemned_blink_effect { 
+  0% {
+    visibility: hidden;
+  }
+  50% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
+@keyframes condemned_blink_effect {
+  0% {
+    visibility: hidden;
+  }
+  50% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+	
+	.vehicleImageMain{
+		border-radius: 15px;
+		display: block;
+		margin: 0px !important;
+		width: 250px;
+		height: 250px;
+	}
+
+	.vechicleTable{
+		width: 80%;
+		margin-left: -20px
+	}
+	
+	.inputSearch{
+		width: 40% !important;
+	}
+	
+	.inputSelectSearch{
+		width: 40% !important;
+	}
+
+	.userContentArea{
+		width: 100%  !important;
+	}
+	
+	.userMenu{
+		width: 100%  !important;
+	}
+	
+	.vechiclemarketBox{
+		width: 100%;
+		clear: both;
+	}
+	
+	.vechiclemarketBoxDetails{
+			width: 240%;
+	}	
+	
+	.halfContainerUserBoxLeft{
+		width: 100%;
+	}
+  
+	.halfContainerUserBoxRight{
+		width: 100%;
+	}
+	
+	.userMenu{
+		width: 100%;
+		border: none;
+	}
+
+	.userContentArea{
+		width: 100%;
+	} 
+	
+	#navigationLeft{
+		float: left;
+		width: 55%;
+		margin-left: 5%;
+	}
+ 
+	#navigationRight{
+		float: right;
+		width: 40%;
+	}
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+		
+	.vehicleImage{
+		width: 300px;
+	}
+	
+	.vechiclemarketBox{
+		width: 40%;
+		float: left;
+		margin-right: 35px;
+	}
+	
+	.vechiclemarketBoxDetails{
+			
+	}	
+	
+	.halfContainerUserBoxLeft{
+		width: 100%;
+	}
+  
+	.halfContainerUserBoxRight{
+		width: 100%;
+	}
+	
+	.userMenu{
+		width: 100%;
+		border: none;
+	}
+
+	.userContentArea{
+		width: 100%;
+	} 
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+			
+	.vechiclemarketBox{
+		width: 30%;
+	}
+
+	.halfContainerUserBoxLeft{
+		width: 38%;
+	}
+  
+	.halfContainerUserBoxRight{
+		width: 48%;
+	}
+	
+	.userMenu{
+		width: 38%;
+	}
+
+	.userContentArea{
+		width: 48%;
+	} 
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+	.vechiclemarketBox{
+		width: 30%;
+		float: left;
+	}
+
+	.vechiclemarketBoxDetails{
+		margin-bottom: 0;
+		padding-bottom: 1px;
+		border-bottom: 5px dotted #ff0000;	
+	}
+	
+	.vechiclemarketBox:hover{
+		box-shadow: 0px 0px 15px #333333;
+	}
+
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+	.vechiclemarketBox:hover{
+		box-shadow: 0px 0px 15px #333333;
+	}
+}
+ /** @ MEDIA QUERIES END **/

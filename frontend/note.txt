@@ -1,0 +1,103 @@
+{
+	"id" : Integer,
+	"email" :  String,
+	"first_name" : String,
+	"last_name" : String,
+	"password" :  String,
+	"address" :  String,
+	"is_admin" : Boolean
+}
+
+{
+	"status" :  Interger,
+	data{
+		"email" :  String,
+		"password" :  String,
+		"confirm_password" :  String,
+		"time_changed" :  Timestamp
+	}	
+}
+
+{
+	"status" :  Interger,
+	"data" : {
+		"token" : String
+		"id" : Interger
+		"first_name" : String
+		"last_name" : String
+		"email" : String
+	}
+}
+---------------------------------------
+
+git clone -b apiv1 git@github.com:DublinGreen/automart_adc_by_greenDevNG.git
+git push -u https://github.com/DublinGreen/automart_adc_by_greenDevNG features
+git push -u https://github.com/DublinGreen/automart_adc_by_greenDevNG gh-pages
+git push -u https://github.com/DublinGreen/automart_adc_by_greenDevNG apiv1
+https://dublingreen.github.io/automart_adc_by_greenDevNG
+
+
+remore parameters from xhttp use formdata
+and clean string adding
+
+
+
+-----------------------------
+merging branches
+
+If you don't have push (write) access to an upstream repository, then you can pull commits from that repository into your own fork.
+
+Open Terminal.
+
+Change the current working directory to your local project.
+
+Check out the branch you wish to merge to. Usually, you will merge into master.
+
+$ git checkout master
+Pull the desired branch from the upstream repository. This method will retain the commit history without modification.
+
+$ git pull https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git BRANCH_NAME
+If there are conflicts, resolve them. For more information, see "Addressing merge conflicts".
+
+Commit the merge.
+
+Review the changes and ensure they are satisfactory.
+
+Push the merge to your GitHub repository.
+
+$ git push origin master
+
+var assert = require('assert');
+describe('Array', function() {
+  describe('#indexOf()', function() {
+    it('should return -1 when the value is not present', function() {
+      assert.equal([1, 2, 3].indexOf(4), -1);
+    });
+  });
+});
+
+git push origin --delete api-token
+git push origin --delete api-login
+git push origin --delete api-signup
+git push origin --delete api-token
+
+git clone --single-branch --branch api-token
+
+git clone --branch api-token https://github.com/DublinGreen/automart_adc_by_greenDevNG/
+ 
+
+cb750af1c5f6940d12aba0cfa4e3f22a05dfcb33
+cb750af1c5f6940d12aba0cfa4e3f22a05dfcb33
+
+-------------------------
+
+Usage
+As a command line script
+npm i -g raml2html-markdown-theme
+raml2html --help
+raml2html example.raml > example.html
+raml2html --theme raml2html-markdown-theme example.raml > example.html
+raml2html --template my-custom-template.nunjucks -i example.raml -o example.html
+
+
+PATCH /order/<:order-id>/price 
